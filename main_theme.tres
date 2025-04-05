@@ -2,3 +2,4 @@
 
 [resource]
 default_font_size = 50
+VBoxContainer/constants/separation = 20
