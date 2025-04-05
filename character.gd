@@ -1,28 +1,39 @@
 extends CharacterBody2D
 
-@export
 var max_speed_x := 35.0
-@export
 var accel_x := 0.5
-@export
 var decel_x := 1.0
-@export
 var break_x := 2.0
 
-@export
 var max_speed_y := 55.0
-@export
+var max_speed_float := 30.0
 var jump_speed := 50.0
-@export
+var float_accel := 0.7
 var jump_accel := 0.7
 var is_jumping := false
 
 var jump_from := 0.0
 
+var double_tap_interval_ms := 400
+var jump_pressed_time_ms := 0
+
+var is_floating := false
 
 func _physics_process(delta: float) -> void:
 	
-	velocity += get_gravity()
+	if Input.is_action_just_pressed("jump"):
+		var current_time := Time.get_ticks_msec()
+		if current_time <= jump_pressed_time_ms + double_tap_interval_ms:
+			is_floating = not is_floating
+		
+		if is_floating or is_on_floor():
+			jump_pressed_time_ms = current_time
+	
+	if is_floating:
+		velocity.y -= float_accel
+	else:
+		velocity += get_gravity()
+	
 	
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = -jump_speed
@@ -32,6 +43,7 @@ func _physics_process(delta: float) -> void:
 			velocity.y -= jump_accel
 		else:
 			is_jumping = false
+	
 	
 	var x_change := 0.0
 	var horizontal := Input.get_axis("left", "right")
@@ -49,7 +61,10 @@ func _physics_process(delta: float) -> void:
 		x_change *= 0.2
 	velocity.x += x_change
 	
-	velocity.y = clampf(velocity.y, -max_speed_y, max_speed_y)
+	if is_floating:
+		velocity.y = clampf(velocity.y, -max_speed_float, max_speed_float)
+	else:
+		velocity.y = clampf(velocity.y, -max_speed_y, max_speed_y)
 	velocity.x = clampf(velocity.x, -max_speed_x, max_speed_x)
 	
 	move_and_slide()

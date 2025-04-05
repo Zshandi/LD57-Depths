@@ -33,13 +33,20 @@ position = Vector2(138, 25)
 position = Vector2(156, 132)
 script = ExtResource("5_7jktm")
 
-[node name="StaticBody2D" parent="StaticBody2D" instance=ExtResource("3_feb5d")]
-position = Vector2(-84, -64)
-rotation = 1.57079
-script = ExtResource("5_7jktm")
-
 [node name="StaticBody2D_2" parent="." instance=ExtResource("3_feb5d")]
 position = Vector2(362, 112)
+script = ExtResource("5_7jktm")
+
+[node name="StaticBody2D_8" parent="." instance=ExtResource("3_feb5d")]
+position = Vector2(453, -26)
+script = ExtResource("5_7jktm")
+
+[node name="StaticBody2D_10" parent="." instance=ExtResource("3_feb5d")]
+position = Vector2(589, -38)
+script = ExtResource("5_7jktm")
+
+[node name="StaticBody2D_9" parent="." instance=ExtResource("3_feb5d")]
+position = Vector2(525, 75)
 script = ExtResource("5_7jktm")
 
 [node name="StaticBody2D_3" parent="." instance=ExtResource("3_feb5d")]
@@ -48,4 +55,19 @@ script = ExtResource("5_7jktm")
 
 [node name="StaticBody2D_4" parent="." instance=ExtResource("3_feb5d")]
 position = Vector2(224, 152)
+script = ExtResource("5_7jktm")
+
+[node name="StaticBody2D_5" parent="." instance=ExtResource("3_feb5d")]
+position = Vector2(72, 68)
+rotation = 1.57079
+script = ExtResource("5_7jktm")
+
+[node name="StaticBody2D_6" parent="." instance=ExtResource("3_feb5d")]
+position = Vector2(449, 119)
+rotation = 1.57079
+script = ExtResource("5_7jktm")
+
+[node name="StaticBody2D_7" parent="." instance=ExtResource("3_feb5d")]
+position = Vector2(374, -34)
+rotation = 1.57079
 script = ExtResource("5_7jktm")
