@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cfydejf68tu5j"]
 
-[ext_resource type="Script" path="res://menus/settings.gd" id="1_isxf4"]
+[ext_resource type="Script" uid="uid://b3wsj3r12robu" path="res://menus/settings.gd" id="1_isxf4"]
 [ext_resource type="Theme" uid="uid://co6ocde4u0hhu" path="res://main_theme.tres" id="2_u8r3b"]
 
 [node name="Settings" type="VBoxContainer"]
