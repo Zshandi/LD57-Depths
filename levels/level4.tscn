@@ -1,0 +1,126 @@
+[gd_scene load_steps=5 format=3 uid="uid://cell88uumwhtu"]
+
+[ext_resource type="PackedScene" uid="uid://b3riarhbbwn8y" path="res://levels/level_base.tscn" id="1_tow46"]
+[ext_resource type="PackedScene" uid="uid://cij06vhna703f" path="res://levels/objects/bubble_collectible.tscn" id="2_g58o0"]
+[ext_resource type="PackedScene" uid="uid://nvdk5rbg4euh" path="res://levels/objects/wall_200x50.tscn" id="3_w6i3i"]
+[ext_resource type="PackedScene" uid="uid://4c7anriputsx" path="res://levels/objects/wall_400x100.tscn" id="4_b8w0f"]
+
+[node name="Level" instance=ExtResource("1_tow46")]
+
+[node name="BubbleCharacter" parent="." index="2"]
+position = Vector2(339, 266)
+color = Color(0.792, 0.61, 1, 1)
+
+[node name="BubbleCollectible2" parent="." index="3" instance=ExtResource("2_g58o0")]
+position = Vector2(506, 81)
+color = Color(0.61, 0.974, 1, 1)
+randomize_color = false
+
+[node name="BubbleCollectible4" parent="." index="4" instance=ExtResource("2_g58o0")]
+position = Vector2(445, 720)
+color = Color(1, 0.61, 0.9805, 1)
+randomize_color = false
+
+[node name="BubbleCollectible9" parent="." index="5" instance=ExtResource("2_g58o0")]
+position = Vector2(241, 801)
+color = Color(0.61, 1, 0.987, 1)
+randomize_color = false
+
+[node name="BubbleCollectible10" parent="." index="6" instance=ExtResource("2_g58o0")]
+position = Vector2(507, 988)
+color = Color(0.61, 1, 0.701, 1)
+randomize_color = false
+
+[node name="BubbleCollectible5" parent="." index="7" instance=ExtResource("2_g58o0")]
+position = Vector2(555, 481)
+color = Color(1, 0.987, 0.61, 1)
+randomize_color = false
+
+[node name="BubbleCollectible8" parent="." index="8" instance=ExtResource("2_g58o0")]
+position = Vector2(477, 321)
+color = Color(0.61, 1, 0.623, 1)
+randomize_color = false
+
+[node name="BubbleCollectible6" parent="." index="9" instance=ExtResource("2_g58o0")]
+position = Vector2(779, 973)
+color = Color(0.7465, 1, 0.61, 1)
+randomize_color = false
+
+[node name="BubbleCollectible7" parent="." index="10" instance=ExtResource("2_g58o0")]
+position = Vector2(932, 826)
+color = Color(0.61, 1, 0.9675, 1)
+randomize_color = false
+
+[node name="BubbleCollectible11" parent="." index="11" instance=ExtResource("2_g58o0")]
+position = Vector2(1058, 628)
+color = Color(1, 0.8245, 0.61, 1)
+randomize_color = false
+
+[node name="BubbleCollectible12" parent="." index="12" instance=ExtResource("2_g58o0")]
+position = Vector2(1241, 565)
+color = Color(0.9155, 1, 0.61, 1)
+randomize_color = false
+
+[node name="Wall_200x50_" parent="." index="13" instance=ExtResource("3_w6i3i")]
+position = Vector2(165, 428)
+rotation = -1.76381
+
+[node name="Wall_200x50_5" parent="." index="14" instance=ExtResource("3_w6i3i")]
+position = Vector2(481, -14)
+rotation = -1.6526
+
+[node name="Wall_200x50_6" parent="." index="15" instance=ExtResource("3_w6i3i")]
+position = Vector2(585, 0.999996)
+rotation = -0.739684
+
+[node name="Wall_200x50_4" parent="." index="16" instance=ExtResource("3_w6i3i")]
+position = Vector2(473, 768)
+rotation = 0.0827912
+
+[node name="Wall_200x50_8" parent="." index="17" instance=ExtResource("3_w6i3i")]
+position = Vector2(1393, 852)
+rotation = -0.600867
+
+[node name="Wall_200x50_9" parent="." index="18" instance=ExtResource("3_w6i3i")]
+position = Vector2(1555, 69.9999)
+rotation = -5.40947
+
+[node name="Wall_200x50_3" parent="." index="19" instance=ExtResource("3_w6i3i")]
+position = Vector2(588, 710)
+rotation = -1.49707
+
+[node name="Wall_200x50_7" parent="." index="20" instance=ExtResource("3_w6i3i")]
+position = Vector2(673, 721)
+rotation = -1.49707
+
+[node name="Wall_400x100_" parent="." index="21" instance=ExtResource("4_b8w0f")]
+position = Vector2(122, 149)
+rotation = -0.941915
+
+[node name="Wall_400x100_2" parent="." index="22" instance=ExtResource("4_b8w0f")]
+position = Vector2(632, 470)
+rotation = -1.51087
+
+[node name="Wall_400x100_3" parent="." index="23" instance=ExtResource("4_b8w0f")]
+position = Vector2(87, 895)
+rotation = 0.633479
+
+[node name="Wall_400x100_6" parent="." index="24" instance=ExtResource("4_b8w0f")]
+position = Vector2(449, 1153)
+rotation = -0.140757
+
+[node name="Wall_400x100_7" parent="." index="25" instance=ExtResource("4_b8w0f")]
+position = Vector2(1237, 820)
+rotation = -0.639483
+
+[node name="Wall_400x100_8" parent="." index="26" instance=ExtResource("4_b8w0f")]
+position = Vector2(1360, 985)
+rotation = -0.639483
+
+[node name="Wall_400x100_4" parent="." index="27" instance=ExtResource("4_b8w0f")]
+position = Vector2(867, 196)
+rotation = -1.62741
+
+[node name="Wall_400x100_5" parent="." index="28" instance=ExtResource("4_b8w0f")]
+position = Vector2(15, 845)
+rotation = -1.34629

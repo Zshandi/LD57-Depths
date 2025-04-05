@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://nvdk5rbg4euh"]
+
+[ext_resource type="Texture2D" uid="uid://bule2bgxrq7tf" path="res://assets/textures/Walls/Wall-600x150.png" id="1_o5asi"]
+
+[node name="Wall_200x50_" type="StaticBody2D"]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 200.0
+offset_bottom = 50.0
+texture = ExtResource("1_o5asi")
+expand_mode = 1
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+visible = false
+polygon = PackedVector2Array(13, 0, 187, 0, 200, 13, 200, 37, 187, 50, 13, 50, 0, 37, 0, 13)

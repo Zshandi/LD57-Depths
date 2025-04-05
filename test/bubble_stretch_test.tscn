@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://c4nk5q20f26hg"]
+
+[ext_resource type="Script" path="res://test/bubble_stretch_test.gd" id="1_0psef"]
+[ext_resource type="PackedScene" uid="uid://jot0khtaj6dd" path="res://bubble.tscn" id="2_ctbn7"]
+
+[node name="BubbleStretchTest" type="Node2D"]
+position = Vector2(953, 532)
+script = ExtResource("1_0psef")
+
+[node name="Bubble" parent="." instance=ExtResource("2_ctbn7")]
+unique_name_in_owner = true
+scale = Vector2(6, 6)
+base_scale = 6.0

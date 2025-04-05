@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://k156i1s6p2kj"
+path="res://.godot/imported/Bubble bloop (echo).wav-f0c43bb341bc795053cfb708adea099b.sample"
+
+[deps]
+
+source_file="res://assets/sounds/Bubble bloop (echo).wav"
+dest_files=["res://.godot/imported/Bubble bloop (echo).wav-f0c43bb341bc795053cfb708adea099b.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

@@ -1,0 +1,118 @@
+[gd_scene load_steps=5 format=3 uid="uid://c0v0jk5uiwocb"]
+
+[ext_resource type="PackedScene" uid="uid://b3riarhbbwn8y" path="res://levels/level_base.tscn" id="1_87uf8"]
+[ext_resource type="PackedScene" uid="uid://cij06vhna703f" path="res://levels/objects/bubble_collectible.tscn" id="2_dy22c"]
+[ext_resource type="PackedScene" uid="uid://nvdk5rbg4euh" path="res://levels/objects/wall_200x50.tscn" id="3_yuras"]
+[ext_resource type="PackedScene" uid="uid://4c7anriputsx" path="res://levels/objects/wall_400x100.tscn" id="4_6wgs4"]
+
+[node name="Level" instance=ExtResource("1_87uf8")]
+
+[node name="BubbleCharacter" parent="." index="2"]
+position = Vector2(306, 326)
+color = Color(0.792, 0.61, 1, 1)
+
+[node name="BubbleCollectible2" parent="." index="3" instance=ExtResource("2_dy22c")]
+position = Vector2(625, 284)
+color = Color(1, 0.61, 0.805, 1)
+randomize_color = false
+
+[node name="BubbleCollectible4" parent="." index="4" instance=ExtResource("2_dy22c")]
+position = Vector2(910, 118)
+color = Color(1, 0.6945, 0.61, 1)
+randomize_color = false
+
+[node name="BubbleCollectible6" parent="." index="5" instance=ExtResource("2_dy22c")]
+position = Vector2(1108, 372)
+color = Color(1, 0.8635, 0.61, 1)
+randomize_color = false
+
+[node name="BubbleCollectible7" parent="." index="6" instance=ExtResource("2_dy22c")]
+position = Vector2(1354, 278)
+color = Color(0.61, 0.6685, 1, 1)
+randomize_color = false
+
+[node name="BubbleCollectible8" parent="." index="7" instance=ExtResource("2_dy22c")]
+position = Vector2(1399, 206)
+color = Color(0.61, 0.909, 1, 1)
+randomize_color = false
+
+[node name="BubbleCollectible12" parent="." index="8" instance=ExtResource("2_dy22c")]
+position = Vector2(1599, 82)
+scale = Vector2(3, 3)
+color = Color(0.34, 0.978, 1, 1)
+randomize_color = false
+
+[node name="BubbleCollectible13" parent="." index="9" instance=ExtResource("2_dy22c")]
+position = Vector2(2141, 533)
+scale = Vector2(4, 4)
+color = Color(0.34, 1, 0.813, 1)
+randomize_color = false
+
+[node name="BubbleCollectible9" parent="." index="10" instance=ExtResource("2_dy22c")]
+position = Vector2(1455, 147)
+color = Color(0.61, 1, 0.9805, 1)
+randomize_color = false
+
+[node name="Wall_200x50_" parent="." index="11" instance=ExtResource("3_yuras")]
+position = Vector2(165, 428)
+rotation = -1.76381
+
+[node name="Wall_200x50_5" parent="." index="12" instance=ExtResource("3_yuras")]
+position = Vector2(1191, 162)
+rotation = -1.6526
+
+[node name="Wall_200x50_7" parent="." index="13" instance=ExtResource("3_yuras")]
+position = Vector2(1476, 565)
+rotation = -1.39239
+
+[node name="Wall_200x50_8" parent="." index="14" instance=ExtResource("3_yuras")]
+position = Vector2(1780, -54)
+rotation = -1.39239
+
+[node name="Wall_200x50_6" parent="." index="15" instance=ExtResource("3_yuras")]
+position = Vector2(1257, 36)
+rotation = -1.6526
+
+[node name="Wall_200x50_9" parent="." index="16" instance=ExtResource("3_yuras")]
+position = Vector2(1572, 600)
+rotation = -0.965094
+
+[node name="Wall_200x50_10" parent="." index="17" instance=ExtResource("3_yuras")]
+position = Vector2(1652, 667)
+rotation = -0.526079
+
+[node name="Wall_200x50_4" parent="." index="18" instance=ExtResource("3_yuras")]
+position = Vector2(497, 21)
+rotation = -0.238598
+
+[node name="Wall_200x50_3" parent="." index="19" instance=ExtResource("3_yuras")]
+position = Vector2(647, 398)
+rotation = -0.143843
+
+[node name="Wall_400x100_" parent="." index="20" instance=ExtResource("4_6wgs4")]
+position = Vector2(186, 133)
+rotation = -0.11698
+
+[node name="Wall_400x100_2" parent="." index="21" instance=ExtResource("4_6wgs4")]
+position = Vector2(1043, 574)
+rotation = -0.375268
+
+[node name="Wall_400x100_3" parent="." index="22" instance=ExtResource("4_6wgs4")]
+position = Vector2(732, -112)
+rotation = 0.0734363
+
+[node name="Wall_400x100_6" parent="." index="23" instance=ExtResource("4_6wgs4")]
+position = Vector2(1336, -245)
+rotation = 0.0734363
+
+[node name="Wall_400x100_7" parent="." index="24" instance=ExtResource("4_6wgs4")]
+position = Vector2(1925, -124)
+rotation = 0.604421
+
+[node name="Wall_400x100_4" parent="." index="25" instance=ExtResource("4_6wgs4")]
+position = Vector2(888, 654)
+rotation = -1.62741
+
+[node name="Wall_400x100_5" parent="." index="26" instance=ExtResource("4_6wgs4")]
+position = Vector2(218, 435)
+rotation = -0.0452589

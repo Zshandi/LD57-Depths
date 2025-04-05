@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://ds3fo73fw2tqp"
+path="res://.godot/imported/Lots and lots of bubbles popping (short fade).wav-86650d1df71f1c4bbc745e6f0a666765.sample"
+
+[deps]
+
+source_file="res://assets/sounds/Lots and lots of bubbles popping (short fade).wav"
+dest_files=["res://.godot/imported/Lots and lots of bubbles popping (short fade).wav-86650d1df71f1c4bbc745e6f0a666765.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

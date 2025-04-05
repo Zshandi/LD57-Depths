@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <git_main_branch>main</git_main_branch>
+    <exports_base_dir>.\exports</exports_base_dir>
+    <!-- Note that this currently assumes a godot.exe is in the PATH environment variable -->
+    <godot_command>godot</godot_command>
+    <!-- -q makes it only output errors, and -headless prevents GUI progress popup -->
+    <additional_args>-q --headless</additional_args>
+    <!-- Example zip file name: "My Cool Game v0.0.1 - Windows Desktop" -->
+    <version_prefix> v</version_prefix>
+    <increment_version>false</increment_version>
+    <exports>
+        <!-- Add more export templates here (or remove them if you don't have them configured) -->
+        <!-- The file_name is important to get right. It needs .exe for Windows, and no file extension for Web -->
+        <!-- Note that "index" is the necessary file_name for uploading to itch.io -->
+        <!-- Note that [project_and_version] in the filename will be replaced with the project name and version -->
+        <export name="Web" file_name="index.html" />
+        <export name="Windows Desktop" file_name="[project_and_version].exe" />
+    </exports>
+</config>
