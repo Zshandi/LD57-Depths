@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://bn7qsr3svv3vw"]
+
+[ext_resource type="Script" uid="uid://vjguve08ub51" path="res://character.gd" id="1_glpr6"]
+[ext_resource type="Script" uid="uid://c8ml8hr6exf0a" path="res://pixel_snap.gd" id="2_pjt0s"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pjt0s"]
+size = Vector2(24, 46)
+
+[node name="Character" type="CharacterBody2D"]
+script = ExtResource("1_glpr6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_pjt0s")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+script = ExtResource("2_pjt0s")

@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 @export
-var max_speed_x := 65.0
+var max_speed_x := 35.0
 @export
 var accel_x := 0.5
 @export
@@ -10,7 +10,7 @@ var decel_x := 1.0
 var break_x := 2.0
 
 @export
-var max_speed_y := 100.0
+var max_speed_y := 55.0
 @export
 var jump_speed := 50.0
 @export
