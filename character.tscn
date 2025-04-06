@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bn7qsr3svv3vw"]
+[gd_scene load_steps=19 format=3 uid="uid://bn7qsr3svv3vw"]
 
 [ext_resource type="Script" uid="uid://vjguve08ub51" path="res://character.gd" id="1_glpr6"]
 [ext_resource type="Script" uid="uid://c8ml8hr6exf0a" path="res://pixel_snap.gd" id="2_pjt0s"]
@@ -64,7 +64,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"attack",
-"speed": 2.0
+"speed": 2.5
 }, {
 "frames": [{
 "duration": 1.0,
@@ -100,6 +100,44 @@ animations = [{
 "speed": 2.0
 }]
 
+[sub_resource type="Animation" id="Animation_wa5vi"]
+resource_name = "hurt_flash"
+length = 0.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.419608), Color(1, 1, 1, 1), Color(1, 1, 1, 0.419608)]
+}
+
+[sub_resource type="Animation" id="Animation_wfnr8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_px5sl"]
+_data = {
+&"RESET": SubResource("Animation_wfnr8"),
+&"hurt_flash": SubResource("Animation_wa5vi")
+}
+
 [node name="Character" type="CharacterBody2D"]
 script = ExtResource("1_glpr6")
 
@@ -114,3 +152,11 @@ unique_name_in_owner = true
 texture_filter = 1
 position = Vector2(1, -4)
 sprite_frames = SubResource("SpriteFrames_px5sl")
+animation = &"attack"
+frame = 3
+frame_progress = 1.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_px5sl")
+}
