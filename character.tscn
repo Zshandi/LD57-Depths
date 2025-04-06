@@ -1,18 +1,11 @@
-[gd_scene load_steps=18 format=3 uid="uid://bn7qsr3svv3vw"]
+[gd_scene load_steps=21 format=3 uid="uid://bn7qsr3svv3vw"]
 
 [ext_resource type="Script" uid="uid://vjguve08ub51" path="res://character.gd" id="1_glpr6"]
 [ext_resource type="Texture2D" uid="uid://bm6se4u52fbpe" path="res://assets/textures/diver/diver sprite sheet with attack.png" id="3_wa5vi"]
+[ext_resource type="AudioStream" uid="uid://x5njpp20yihl" path="res://assets/sounds/hammer hit.wav" id="3_wfnr8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pjt0s"]
 size = Vector2(19, 45)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_wa5vi"]
-atlas = ExtResource("3_wa5vi")
-region = Rect2(282, 0, 47, 54)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_px5sl"]
-atlas = ExtResource("3_wa5vi")
-region = Rect2(329, 0, 47, 54)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0qfo5"]
 atlas = ExtResource("3_wa5vi")
@@ -21,6 +14,14 @@ region = Rect2(376, 0, 47, 54)
 [sub_resource type="AtlasTexture" id="AtlasTexture_yxww1"]
 atlas = ExtResource("3_wa5vi")
 region = Rect2(423, 0, 47, 54)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pjt0s"]
+atlas = ExtResource("3_wa5vi")
+region = Rect2(282, 0, 47, 54)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wa5vi"]
+atlas = ExtResource("3_wa5vi")
+region = Rect2(329, 0, 47, 54)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wfnr8"]
 atlas = ExtResource("3_wa5vi")
@@ -49,20 +50,25 @@ region = Rect2(47, 0, 47, 54)
 [sub_resource type="SpriteFrames" id="SpriteFrames_px5sl"]
 animations = [{
 "frames": [{
-"duration": 0.5,
-"texture": SubResource("AtlasTexture_wa5vi")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_px5sl")
-}, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_0qfo5")
 }, {
-"duration": 2.0,
+"duration": 3.0,
 "texture": SubResource("AtlasTexture_yxww1")
 }],
 "loop": false,
-"name": &"attack",
+"name": &"attack_swing",
+"speed": 2.5
+}, {
+"frames": [{
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_pjt0s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wa5vi")
+}],
+"loop": false,
+"name": &"attack_windup",
 "speed": 2.5
 }, {
 "frames": [{
@@ -137,6 +143,12 @@ _data = {
 &"hurt_flash": SubResource("Animation_wa5vi")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wa5vi"]
+size = Vector2(28.75, 24.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wfnr8"]
+size = Vector2(20.5, 31.5)
+
 [node name="Character" type="CharacterBody2D"]
 script = ExtResource("1_glpr6")
 
@@ -149,8 +161,30 @@ shape = SubResource("RectangleShape2D_pjt0s")
 unique_name_in_owner = true
 position = Vector2(1, -4)
 sprite_frames = SubResource("SpriteFrames_px5sl")
+animation = &"attack_swing"
+frame = 1
+frame_progress = 1.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
 libraries = {
 &"": SubResource("AnimationLibrary_px5sl")
 }
+
+[node name="HammerHit_0" type="Area2D" parent="."]
+unique_name_in_owner = true
+
+[node name="Collision_0" type="CollisionShape2D" parent="HammerHit_0"]
+position = Vector2(11.375, -14.75)
+shape = SubResource("RectangleShape2D_wa5vi")
+
+[node name="HammerHit_1" type="Area2D" parent="."]
+unique_name_in_owner = true
+
+[node name="Collision_1" type="CollisionShape2D" parent="HammerHit_1"]
+position = Vector2(18.75, 6.75)
+shape = SubResource("RectangleShape2D_wfnr8")
+
+[node name="HammerHitAudio" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("3_wfnr8")

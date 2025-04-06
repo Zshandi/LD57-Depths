@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://csmi5c4uyi8je"]
+[gd_scene load_steps=8 format=3 uid="uid://csmi5c4uyi8je"]
 
 [ext_resource type="Script" uid="uid://tyk5olheak12" path="res://crab.gd" id="1_wad7g"]
 [ext_resource type="Texture2D" uid="uid://r5f11dobev38" path="res://assets/textures/enemies/crab enemy.png" id="2_14etv"]
+[ext_resource type="AudioStream" uid="uid://bnjf3euxdirtf" path="res://assets/sounds/crab death underwater.wav" id="3_14etv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j5wjh"]
 size = Vector2(20, 16)
@@ -38,3 +39,8 @@ shape = SubResource("RectangleShape2D_j5wjh")
 unique_name_in_owner = true
 sprite_frames = SubResource("SpriteFrames_mfdv2")
 frame_progress = 0.942813
+
+[node name="DeathSound" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+process_mode = 3
+stream = ExtResource("3_14etv")

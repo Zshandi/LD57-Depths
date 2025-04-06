@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="Deep Diver"
+config/name="Dive to Survive"
 config/version="0.0.0"
 run/main_scene="uid://dhgad453x4lht"
 config/features=PackedStringArray("4.4", "GL Compatibility")
