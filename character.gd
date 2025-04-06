@@ -31,6 +31,8 @@ func _physics_process(delta: float) -> void:
 	
 	if is_floating:
 		velocity.y -= float_accel
+		if is_on_ceiling():
+			is_floating = false
 	else:
 		velocity += get_gravity()
 	
