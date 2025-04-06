@@ -1,23 +1,50 @@
 extends CharacterBody2D
+class_name Character
+
+# Constants
 
 var max_speed_x := 35.0
 var accel_x := 0.5
 var decel_x := 1.0
 var break_x := 2.0
 
+var last_direction := 1.0
+var current_direction := 0.0
+
 var max_speed_y := 55.0
 var max_speed_float := 30.0
-var jump_speed := 50.0
+var jump_speed := 55.0
 var float_accel := 0.7
-var jump_accel := 0.7
+var jump_accel := 0.8
+
+var double_tap_interval_ms := 400
+
+# State
+
 var is_jumping := false
 
 var jump_from := 0.0
-
-var double_tap_interval_ms := 400
 var jump_pressed_time_ms := 0
 
 var is_floating := false
+
+var invincible_frames := false
+
+# Stats
+
+var health := 5
+
+# Logic
+
+func _process(delta: float) -> void:
+	%AnimatedSprite.scale.x = last_direction
+	if is_on_floor():
+		if current_direction != 0:
+			%AnimatedSprite.play("walking")
+		else:
+			%AnimatedSprite.play("default")
+	else:
+		%AnimatedSprite.play("jump")
 
 func _physics_process(delta: float) -> void:
 	
@@ -48,16 +75,19 @@ func _physics_process(delta: float) -> void:
 	
 	
 	var x_change := 0.0
-	var horizontal := Input.get_axis("left", "right")
-	if horizontal == 0:
+	current_direction = Input.get_axis("left", "right")
+	if current_direction == 0:
 		if abs(velocity.x) < decel_x:
 			x_change = -velocity.x
 		else:
 			x_change = -sign(velocity.x) * decel_x
-	elif sign(horizontal) != sign(velocity.x):
-		x_change = horizontal * break_x
+	elif sign(current_direction) != sign(velocity.x):
+		x_change = current_direction * break_x
 	else:
-		x_change = horizontal * accel_x
+		x_change = current_direction * accel_x
+	
+	if current_direction != 0:
+		last_direction = current_direction
 	
 	if !is_on_floor():
 		x_change *= 0.2
@@ -70,3 +100,26 @@ func _physics_process(delta: float) -> void:
 	velocity.x = clampf(velocity.x, -max_speed_x, max_speed_x)
 	
 	move_and_slide()
+	
+	for index in range(0, get_slide_collision_count()):
+		var collision := get_slide_collision(index)
+		
+		var what := collision.get_collider()
+		
+		if what is Node and "hurt_player" in what:
+			what.hurt_player(self)
+
+func take_damage(amount:int, from:Node2D = null, knockback:float = 40):
+	if invincible_frames: return
+	
+	health -= amount
+	$AnimationPlayer.play("hurt_flash")
+	invincible_frames = true
+	if from != null and knockback > 0:
+		var direction_x := signf(global_position.x - from.global_position.x)
+		var direction := Vector2(direction_x, -0.7).normalized()
+		velocity = knockback * direction
+	
+	await get_tree().create_timer(1.2).timeout
+	$AnimationPlayer.play("RESET")
+	invincible_frames = false
