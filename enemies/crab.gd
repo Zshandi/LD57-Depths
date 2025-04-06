@@ -11,10 +11,11 @@ var starting_position:Vector2
 var current_direction:int
 
 func _ready() -> void:
-	super._ready()
 	if initial_direction == 0:
 		initial_direction = -1
 	current_direction = initial_direction
+	if not Engine.is_editor_hint():
+		super._ready()
 
 func _physics_process(delta: float) -> void:
 	if not activated: return
