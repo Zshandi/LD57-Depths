@@ -184,7 +184,5 @@ func knockback(from_global:Vector2, amount:float):
 
 
 func _on_in_view_area_body_entered(body: Node2D) -> void:
-	print_debug("Body: ", body)
 	if "activate" in body:
 		body.activate()
-		print_debug("Activated")
