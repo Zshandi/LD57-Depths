@@ -1,4 +1,7 @@
 extends CharacterBody2D
+class_name Enemy
+
+var activated := false
 
 func _ready() -> void:
 	%Animation.play("default")
@@ -12,3 +15,6 @@ func player_attack() -> void:
 	process_mode = Node.PROCESS_MODE_DISABLED
 	await %DeathSound.finished
 	queue_free()
+
+func activate() -> void:
+	activated = true

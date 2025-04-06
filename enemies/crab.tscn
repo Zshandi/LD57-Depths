@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://ch3ltc6adf1yi"]
+
+[ext_resource type="PackedScene" uid="uid://csmi5c4uyi8je" path="res://enemies/enemy.tscn" id="1_47imk"]
+[ext_resource type="Script" uid="uid://bacurq4mhwurj" path="res://enemies/crab.gd" id="1_wad7g"]
+
+[node name="Crab" instance=ExtResource("1_47imk")]
+script = ExtResource("1_wad7g")
+movement_speed = 5.0
+initial_direction = 0
+
+[node name="Animation" parent="." index="1"]
+frame_progress = 0.0913449

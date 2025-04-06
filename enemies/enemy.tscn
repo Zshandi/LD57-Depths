@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://csmi5c4uyi8je"]
 
-[ext_resource type="Script" uid="uid://tyk5olheak12" path="res://crab.gd" id="1_wad7g"]
+[ext_resource type="Script" uid="uid://tyk5olheak12" path="res://enemies/enemy.gd" id="1_wad7g"]
 [ext_resource type="Texture2D" uid="uid://r5f11dobev38" path="res://assets/textures/enemies/crab enemy.png" id="2_14etv"]
 [ext_resource type="AudioStream" uid="uid://bnjf3euxdirtf" path="res://assets/sounds/crab death underwater.wav" id="3_14etv"]
 
@@ -29,7 +29,7 @@ animations = [{
 "speed": 3.5
 }]
 
-[node name="Crab" type="CharacterBody2D"]
+[node name="Enemy" type="CharacterBody2D"]
 script = ExtResource("1_wad7g")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

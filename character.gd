@@ -181,3 +181,10 @@ func knockback(from_global:Vector2, amount:float):
 	var direction_x := signf(global_position.x - from_global.x)
 	var direction := Vector2(direction_x, -0.7).normalized()
 	velocity = amount * direction
+
+
+func _on_in_view_area_body_entered(body: Node2D) -> void:
+	print_debug("Body: ", body)
+	if "activate" in body:
+		body.activate()
+		print_debug("Activated")
