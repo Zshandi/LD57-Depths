@@ -21,7 +21,8 @@ var double_tap_interval_ms := 400
 
 # State
 
-var is_jumping := false
+var is_jumping_held := false
+var is_jumping_up := false
 
 var jump_from := 0.0
 var jump_pressed_time_ms := 0
@@ -92,14 +93,6 @@ func process_attack(delta: float) -> void:
 
 func process_movement(delta: float) -> void:
 	
-	if Input.is_action_just_pressed("jump"):
-		var current_time := Time.get_ticks_msec()
-		if current_time <= jump_pressed_time_ms + double_tap_interval_ms:
-			is_floating = not is_floating
-		
-		if is_floating or is_on_floor():
-			jump_pressed_time_ms = current_time
-	
 	if is_floating:
 		velocity.y -= float_accel * delta
 		if is_on_ceiling():
@@ -108,15 +101,24 @@ func process_movement(delta: float) -> void:
 		velocity += get_gravity()
 	
 	
-	if Input.is_action_just_pressed("jump") and is_on_floor():
-		velocity.y = -jump_speed
-		is_jumping = true
-	elif is_jumping and velocity.y < 0:
+	if Input.is_action_just_pressed("jump"):
+		if is_on_floor():
+			velocity.y = -jump_speed
+			is_jumping_held = true
+			is_jumping_up = true
+		elif is_jumping_up or is_floating:
+			is_floating = not is_floating
+	
+	if is_jumping_held and velocity.y < 0:
 		if Input.is_action_pressed("jump"):
 			velocity.y -= jump_accel * delta
 		else:
-			is_jumping = false
+			is_jumping_held = false
+	else:
+		is_jumping_held = false
 	
+	if velocity.y >= 0:
+		is_jumping_up = false
 	
 	var x_change := 0.0
 	current_direction = Input.get_axis("left", "right")
