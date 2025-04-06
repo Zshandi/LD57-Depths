@@ -166,6 +166,7 @@ label_settings = SubResource("LabelSettings_eow3j")
 
 [node name="Crab_2" parent="." instance=ExtResource("8_48p0x")]
 position = Vector2(546, 56)
+initial_direction = -1
 
 [connection signal="body_entered" from="Tutorial/JumpTrigger" to="Tutorial" method="_on_jump_trigger_body_entered"]
 [connection signal="body_entered" from="Tutorial/FloatTrigger" to="Tutorial" method="_on_float_trigger_body_entered"]

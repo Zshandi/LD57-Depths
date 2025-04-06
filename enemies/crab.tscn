@@ -5,7 +5,7 @@
 
 [node name="Crab" instance=ExtResource("1_47imk")]
 script = ExtResource("1_wad7g")
-movement_speed = 5.0
+movement_speed = 20.0
 initial_direction = 0
 
 [node name="Animation" parent="." index="1"]
