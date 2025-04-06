@@ -84,6 +84,7 @@ player = NodePath("../Character")
 
 [node name="MovementHelp" type="Label" parent="Tutorial"]
 unique_name_in_owner = true
+visible = false
 offset_left = 113.0
 offset_top = 66.0
 offset_right = 165.0
@@ -108,6 +109,7 @@ debug_color = Color(0.514344, 0.576553, 7.70092e-07, 0.42)
 
 [node name="JumpHelp" type="Label" parent="Tutorial"]
 unique_name_in_owner = true
+visible = false
 offset_left = 226.0
 offset_top = 65.0
 offset_right = 298.0
@@ -117,6 +119,7 @@ label_settings = SubResource("LabelSettings_eow3j")
 
 [node name="FloatHelp" type="Label" parent="Tutorial"]
 unique_name_in_owner = true
+visible = false
 offset_left = 392.0
 offset_top = 10.0
 offset_right = 472.0
@@ -125,7 +128,7 @@ text = "double tap"
 label_settings = SubResource("LabelSettings_eow3j")
 
 [node name="Crab" parent="." instance=ExtResource("7_eow3j")]
-position = Vector2(212, 120)
+position = Vector2(559, 56)
 
 [connection signal="body_entered" from="Tutorial/JumpTrigger" to="Tutorial" method="_on_jump_trigger_body_entered"]
 [connection signal="body_entered" from="Tutorial/FloatTrigger" to="Tutorial" method="_on_float_trigger_body_entered"]
