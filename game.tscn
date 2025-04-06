@@ -34,9 +34,8 @@ physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_ryrav")
 
 [sub_resource type="LabelSettings" id="LabelSettings_eow3j"]
-line_spacing = 0.0
 font = ExtResource("6_ryrav")
-font_size = 7
+font_size = 10
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ryrav"]
 size = Vector2(37, 20)
@@ -86,11 +85,11 @@ player = NodePath("../Character")
 [node name="MovementHelp" type="Label" parent="Tutorial"]
 unique_name_in_owner = true
 visible = false
-offset_left = 105.0
+offset_left = 113.0
 offset_top = 66.0
-offset_right = 178.0
-offset_bottom = 74.0
-text = "Left or Right"
+offset_right = 165.0
+offset_bottom = 80.0
+text = "◀ or ▶"
 label_settings = SubResource("LabelSettings_eow3j")
 
 [node name="JumpTrigger" type="Area2D" parent="Tutorial"]
@@ -111,25 +110,25 @@ debug_color = Color(0.514344, 0.576553, 7.70092e-07, 0.42)
 [node name="JumpHelp" type="Label" parent="Tutorial"]
 unique_name_in_owner = true
 visible = false
-offset_left = 245.0
+offset_left = 226.0
 offset_top = 65.0
-offset_right = 297.0
-offset_bottom = 73.0
+offset_right = 298.0
+offset_bottom = 75.0
 text = "X to jump"
 label_settings = SubResource("LabelSettings_eow3j")
 
 [node name="FloatHelp" type="Label" parent="Tutorial"]
 unique_name_in_owner = true
 visible = false
-offset_left = 407.0
-offset_top = 11.0
-offset_right = 463.0
-offset_bottom = 19.0
+offset_left = 392.0
+offset_top = 10.0
+offset_right = 472.0
+offset_bottom = 20.0
 text = "double tap"
 label_settings = SubResource("LabelSettings_eow3j")
 
 [node name="Crab" parent="." instance=ExtResource("7_eow3j")]
-position = Vector2(212, 120)
+position = Vector2(559, 56)
 
 [connection signal="body_entered" from="Tutorial/JumpTrigger" to="Tutorial" method="_on_jump_trigger_body_entered"]
 [connection signal="body_entered" from="Tutorial/FloatTrigger" to="Tutorial" method="_on_float_trigger_body_entered"]
