@@ -66,30 +66,30 @@ var anti_aliasing := AntiAliasingSetting.NONE:
 var music_sample:AudioStreamPlayer
 var music_sample_fade:Tween = null
 
-func _ready() -> void:
-	if Engine.is_editor_hint():
-		return
-	
-	music_sample = MusicPlayer.create_audio_player()
-	
-	# Default values
-	
-	if OS.has_feature("pc"):
-		# Default to Medium anti-aliasing on Desktop
-		anti_aliasing = AntiAliasingSetting.MEDIUM
-	elif OS.has_feature("web"):
-		# compatibility renderer used for web does not yet support anti-aliasing
-		%AntiAliasing.hide()
-	music_volume = 0.7
-	sound_volume = 0.7
-	
-	load_settings()
-	update_full_screen_text()
-	%MusicVolumeSlider.set_value_no_signal(music_volume)
-	%SoundVolumeSlider.set_value_no_signal(sound_volume)
-	%AntiAliasingButton.select(anti_aliasing as int)
-	
-	add_child(music_sample)
+func _ready() -> void:pass
+	#if Engine.is_editor_hint():
+		#return
+	#
+	#music_sample = MusicPlayer.create_audio_player()
+	#
+	## Default values
+	#
+	##if OS.has_feature("pc"):
+		### Default to Medium anti-aliasing on Desktop
+		##anti_aliasing = AntiAliasingSetting.MEDIUM
+	##elif OS.has_feature("web"):
+		### compatibility renderer used for web does not yet support anti-aliasing
+		##%AntiAliasing.hide()
+	#music_volume = 0.7
+	#sound_volume = 0.7
+	#
+	#load_settings()
+	#update_full_screen_text()
+	#%MusicVolumeSlider.set_value_no_signal(music_volume)
+	#%SoundVolumeSlider.set_value_no_signal(sound_volume)
+	#%AntiAliasingButton.select(anti_aliasing as int)
+	#
+	#add_child(music_sample)
 
 func update_full_screen_text():
 	if is_full_screen:
@@ -155,30 +155,30 @@ func _on_back_pressed() -> void:
 	back_button_pressed.emit()
 
 
-func save_settings() -> void:
-	var save_dict := {}
-	save_dict["music_volume"] = music_volume
-	save_dict["sound_volume"] = sound_volume
-	save_dict["is_full_screen"] = is_full_screen
-	save_dict["anti_aliasing"] = anti_aliasing
-	
-	var save_file := FileAccess.open("user://settings", FileAccess.WRITE)
-	save_file.store_var(save_dict)
-	save_file.close()
+func save_settings() -> void:pass
+	#var save_dict := {}
+	#save_dict["music_volume"] = music_volume
+	#save_dict["sound_volume"] = sound_volume
+	#save_dict["is_full_screen"] = is_full_screen
+	#save_dict["anti_aliasing"] = anti_aliasing
+	#
+	#var save_file := FileAccess.open("user://settings", FileAccess.WRITE)
+	#save_file.store_var(save_dict)
+	#save_file.close()
 
-func load_settings() -> void:
-	if !FileAccess.file_exists("user://settings"):
-		# If no settings have been saved, leave values as default
-		print_debug("Loading default settings...")
-		return
-	
-	var save_file := FileAccess.open("user://settings", FileAccess.READ)
-	var save_dict:Dictionary = save_file.get_var()
-	
-	music_volume = save_dict["music_volume"]
-	sound_volume = save_dict["sound_volume"]
-	is_full_screen = save_dict["is_full_screen"]
-	anti_aliasing = save_dict["anti_aliasing"]
+func load_settings() -> void:pass
+	#if !FileAccess.file_exists("user://settings"):
+		## If no settings have been saved, leave values as default
+		#print_debug("Loading default settings...")
+		#return
+	#
+	#var save_file := FileAccess.open("user://settings", FileAccess.READ)
+	#var save_dict:Dictionary = save_file.get_var()
+	#
+	#music_volume = save_dict["music_volume"]
+	#sound_volume = save_dict["sound_volume"]
+	#is_full_screen = save_dict["is_full_screen"]
+	#anti_aliasing = save_dict["anti_aliasing"]
 
 @export
 # This is an editor-only value used to conveniently clear the data for testing

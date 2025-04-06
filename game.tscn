@@ -1,9 +1,22 @@
-[gd_scene load_steps=5 format=3 uid="uid://dhgad453x4lht"]
+[gd_scene load_steps=10 format=3 uid="uid://dhgad453x4lht"]
 
 [ext_resource type="Texture2D" uid="uid://codlc2uml50p6" path="res://assets/textures/Tiles/Tile1.png" id="1_80nbo"]
 [ext_resource type="PackedScene" uid="uid://bn7qsr3svv3vw" path="res://character.tscn" id="2_fc0e3"]
 [ext_resource type="PackedScene" uid="uid://d0tuhvjn0w7fp" path="res://platform.tscn" id="3_feb5d"]
 [ext_resource type="Script" uid="uid://c8pvhb2eak3nv" path="res://pixel_snap_static.gd" id="5_7jktm"]
+[ext_resource type="Script" uid="uid://5762tk01p54b" path="res://tutorial.gd" id="5_ryrav"]
+[ext_resource type="FontFile" uid="uid://bdrm0wxjwuc65" path="res://assets/fonts/zig/zig_____.ttf" id="6_ryrav"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_eow3j"]
+line_spacing = 0.0
+font = ExtResource("6_ryrav")
+font_size = 7
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ryrav"]
+size = Vector2(56, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eow3j"]
+size = Vector2(45.25, 16.5)
 
 [node name="Game" type="Node2D"]
 
@@ -29,45 +42,99 @@ stretch_mode = 1
 [node name="Character" parent="." instance=ExtResource("2_fc0e3")]
 position = Vector2(138, 25)
 
-[node name="StaticBody2D" parent="." instance=ExtResource("3_feb5d")]
+[node name="Terrain" type="Node2D" parent="."]
+
+[node name="StaticBody2D" parent="Terrain" instance=ExtResource("3_feb5d")]
 position = Vector2(156, 132)
 script = ExtResource("5_7jktm")
 
-[node name="StaticBody2D_2" parent="." instance=ExtResource("3_feb5d")]
+[node name="StaticBody2D_2" parent="Terrain" instance=ExtResource("3_feb5d")]
 position = Vector2(362, 112)
 script = ExtResource("5_7jktm")
 
-[node name="StaticBody2D_8" parent="." instance=ExtResource("3_feb5d")]
+[node name="StaticBody2D_8" parent="Terrain" instance=ExtResource("3_feb5d")]
 position = Vector2(453, -26)
 script = ExtResource("5_7jktm")
 
-[node name="StaticBody2D_10" parent="." instance=ExtResource("3_feb5d")]
+[node name="StaticBody2D_10" parent="Terrain" instance=ExtResource("3_feb5d")]
 position = Vector2(589, -38)
 script = ExtResource("5_7jktm")
 
-[node name="StaticBody2D_9" parent="." instance=ExtResource("3_feb5d")]
+[node name="StaticBody2D_9" parent="Terrain" instance=ExtResource("3_feb5d")]
 position = Vector2(525, 75)
 script = ExtResource("5_7jktm")
 
-[node name="StaticBody2D_3" parent="." instance=ExtResource("3_feb5d")]
+[node name="StaticBody2D_3" parent="Terrain" instance=ExtResource("3_feb5d")]
 position = Vector2(362, 132)
 script = ExtResource("5_7jktm")
 
-[node name="StaticBody2D_4" parent="." instance=ExtResource("3_feb5d")]
+[node name="StaticBody2D_4" parent="Terrain" instance=ExtResource("3_feb5d")]
 position = Vector2(224, 152)
 script = ExtResource("5_7jktm")
 
-[node name="StaticBody2D_5" parent="." instance=ExtResource("3_feb5d")]
+[node name="StaticBody2D_5" parent="Terrain" instance=ExtResource("3_feb5d")]
 position = Vector2(72, 68)
 rotation = 1.57079
 script = ExtResource("5_7jktm")
 
-[node name="StaticBody2D_6" parent="." instance=ExtResource("3_feb5d")]
+[node name="StaticBody2D_6" parent="Terrain" instance=ExtResource("3_feb5d")]
 position = Vector2(449, 119)
 rotation = 1.57079
 script = ExtResource("5_7jktm")
 
-[node name="StaticBody2D_7" parent="." instance=ExtResource("3_feb5d")]
+[node name="StaticBody2D_7" parent="Terrain" instance=ExtResource("3_feb5d")]
 position = Vector2(374, -34)
 rotation = 1.57079
 script = ExtResource("5_7jktm")
+
+[node name="Tutorial" type="Node2D" parent="." node_paths=PackedStringArray("player")]
+script = ExtResource("5_ryrav")
+player = NodePath("../Character")
+
+[node name="MovementHelp" type="Label" parent="Tutorial"]
+unique_name_in_owner = true
+visible = false
+offset_left = 105.0
+offset_top = 66.0
+offset_right = 178.0
+offset_bottom = 74.0
+text = "Left or Right"
+label_settings = SubResource("LabelSettings_eow3j")
+
+[node name="JumpTrigger" type="Area2D" parent="Tutorial"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tutorial/JumpTrigger"]
+position = Vector2(258, 133)
+shape = SubResource("RectangleShape2D_ryrav")
+debug_color = Color(0.514344, 0.576553, 7.70092e-07, 0.42)
+
+[node name="FloatTrigger" type="Area2D" parent="Tutorial"]
+position = Vector2(153, -41)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tutorial/FloatTrigger"]
+position = Vector2(264.625, 85)
+shape = SubResource("RectangleShape2D_eow3j")
+debug_color = Color(0.514344, 0.576553, 7.70092e-07, 0.42)
+
+[node name="JumpHelp" type="Label" parent="Tutorial"]
+unique_name_in_owner = true
+visible = false
+offset_left = 245.0
+offset_top = 65.0
+offset_right = 297.0
+offset_bottom = 73.0
+text = "X to jump"
+label_settings = SubResource("LabelSettings_eow3j")
+
+[node name="FloatHelp" type="Label" parent="Tutorial"]
+unique_name_in_owner = true
+visible = false
+offset_left = 407.0
+offset_top = 11.0
+offset_right = 463.0
+offset_bottom = 19.0
+text = "double tap"
+label_settings = SubResource("LabelSettings_eow3j")
+
+[connection signal="body_entered" from="Tutorial/JumpTrigger" to="Tutorial" method="_on_jump_trigger_body_entered"]
+[connection signal="body_entered" from="Tutorial/FloatTrigger" to="Tutorial" method="_on_float_trigger_body_entered"]

@@ -20,7 +20,6 @@ config/icon="res://assets/icon.png"
 
 MusicPlayer="*res://music_player.gd"
 SoundPlayer="*res://sound_player.gd"
-LevelManager="*res://levels/level_manager/level_manager.gd"
 
 [display]
 
@@ -29,7 +28,7 @@ window/size/viewport_height=180
 window/size/resizable=false
 window/size/window_width_override=1280
 window/size/window_height_override=720
-window/stretch/mode="viewport"
+window/stretch/mode="canvas_items"
 
 [editor]
 
