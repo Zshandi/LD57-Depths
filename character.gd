@@ -43,10 +43,9 @@ var health := 6
 # Logic
 
 func _ready():
-	$breath_gauge.frame = health
+	%BreathGauge.frame = health
 
 func _process(delta: float) -> void:
-	%AnimatedSprite.scale.x = last_direction
 	if is_attacking:
 		if is_attack_windup:
 			if %AnimatedSprite.animation != &"attack_windup":
@@ -138,6 +137,7 @@ func process_movement(delta: float) -> void:
 	
 	if current_direction != 0:
 		last_direction = current_direction
+		%Collision.scale.x = last_direction
 	
 	if !is_on_floor():
 		x_change *= 0.2
@@ -172,10 +172,10 @@ func take_damage(amount:int, from:Node2D = null, knockback:float = 40):
 	if invincible_frames: return
 	
 	health -= amount
-	$breath_gauge.frame = health
+	%BreathGauge.frame = health
 	if from != null and knockback > 0:
-		$CPUParticles2D_2.restart()
-		$CPUParticles2D_2.emitting = true
+		%CPUParticles2D_2.restart()
+		%CPUParticles2D_2.emitting = true
 		%AnimationPlayer.play("hurt_flash")
 		invincible_frames = true
 		knockback(from.global_position, knockback)

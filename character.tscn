@@ -8,16 +8,13 @@
 [ext_resource type="Texture2D" uid="uid://bxj7ylmkslrx0" path="res://assets/textures/diver/bubbles.png" id="5_px5sl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pjt0s"]
-size = Vector2(19, 45)
+size = Vector2(20, 45)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wa5vi"]
 size = Vector2(28.75, 24.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wfnr8"]
 size = Vector2(20.5, 31.5)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_px5sl"]
-size = Vector2(320, 180)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0qfo5"]
 atlas = ExtResource("3_wa5vi")
@@ -116,6 +113,9 @@ animations = [{
 "name": &"walking",
 "speed": 2.0
 }]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_px5sl"]
+size = Vector2(320, 180)
 
 [sub_resource type="Animation" id="Animation_wfnr8"]
 length = 0.001
@@ -221,22 +221,29 @@ animations = [{
 [node name="Character" type="CharacterBody2D"]
 script = ExtResource("1_glpr6")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="Collision" type="CollisionShape2D" parent="."]
+unique_name_in_owner = true
 shape = SubResource("RectangleShape2D_pjt0s")
+debug_color = Color(0.942466, 8.56727e-06, 0.60601, 0.42)
 
-[node name="HammerHit_0" type="Area2D" parent="."]
+[node name="HammerHit_0" type="Area2D" parent="Collision"]
 unique_name_in_owner = true
 
-[node name="Collision_0" type="CollisionShape2D" parent="HammerHit_0"]
+[node name="Collision_0" type="CollisionShape2D" parent="Collision/HammerHit_0"]
 position = Vector2(11.375, -14.75)
 shape = SubResource("RectangleShape2D_wa5vi")
 
-[node name="HammerHit_1" type="Area2D" parent="."]
+[node name="HammerHit_1" type="Area2D" parent="Collision"]
 unique_name_in_owner = true
 
-[node name="Collision_1" type="CollisionShape2D" parent="HammerHit_1"]
+[node name="Collision_1" type="CollisionShape2D" parent="Collision/HammerHit_1"]
 position = Vector2(18.75, 6.75)
 shape = SubResource("RectangleShape2D_wfnr8")
+
+[node name="AnimatedSprite" type="AnimatedSprite2D" parent="Collision"]
+unique_name_in_owner = true
+position = Vector2(1, -4)
+sprite_frames = SubResource("SpriteFrames_px5sl")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
@@ -244,11 +251,6 @@ shape = SubResource("RectangleShape2D_wfnr8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Camera2D/InViewArea"]
 shape = SubResource("RectangleShape2D_px5sl")
-
-[node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
-unique_name_in_owner = true
-position = Vector2(1, -4)
-sprite_frames = SubResource("SpriteFrames_px5sl")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
@@ -279,6 +281,7 @@ initial_velocity_max = 5.0
 anim_offset_max = 1.0
 
 [node name="CPUParticles2D_2" type="CPUParticles2D" parent="."]
+unique_name_in_owner = true
 material = SubResource("CanvasItemMaterial_0qfo5")
 position = Vector2(-1, -15)
 emitting = false
@@ -295,13 +298,14 @@ initial_velocity_min = 20.0
 initial_velocity_max = 20.0
 anim_offset_max = 1.0
 
-[node name="breath_gauge" type="AnimatedSprite2D" parent="."]
+[node name="BreathGauge" type="AnimatedSprite2D" parent="."]
+unique_name_in_owner = true
 position = Vector2(-140, 70)
 sprite_frames = SubResource("SpriteFrames_y0ipg")
 
-[node name="breath_timer" type="Timer" parent="breath_gauge"]
+[node name="BreathTimer" type="Timer" parent="BreathGauge"]
 wait_time = 5.0
 autostart = true
 
 [connection signal="body_entered" from="Camera2D/InViewArea" to="." method="_on_in_view_area_body_entered"]
-[connection signal="timeout" from="breath_gauge/breath_timer" to="." method="_on_breath_timer_timeout"]
+[connection signal="timeout" from="BreathGauge/BreathTimer" to="." method="_on_breath_timer_timeout"]
