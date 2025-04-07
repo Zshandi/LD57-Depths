@@ -1,3 +1,51 @@
-[gd_scene format=3 uid="uid://cuqefa3u5fch4"]
+[gd_scene load_steps=5 format=3 uid="uid://cuqefa3u5fch4"]
+
+[ext_resource type="Texture2D" uid="uid://cya60de6o6xii" path="res://assets/textures/background gradient.png" id="1_qr7ta"]
+[ext_resource type="Script" uid="uid://dinbmo76s8yb0" path="res://main_menu.gd" id="1_v3ap6"]
+[ext_resource type="FontFile" uid="uid://bdrm0wxjwuc65" path="res://assets/fonts/zig/zig_____.ttf" id="2_qr7ta"]
+[ext_resource type="Texture2D" uid="uid://brypf3ckmwps1" path="res://assets/textures/victory.png" id="2_v3ap6"]
 
 [node name="Victory" type="Node2D"]
+script = ExtResource("1_v3ap6")
+
+[node name="Sprite2D_2" type="Sprite2D" parent="."]
+position = Vector2(160, 0)
+texture = ExtResource("1_qr7ta")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(160, 34)
+texture = ExtResource("2_v3ap6")
+
+[node name="Start" type="Button" parent="."]
+offset_left = 127.0
+offset_top = 73.0
+offset_right = 197.0
+offset_bottom = 93.0
+size_flags_horizontal = 0
+theme_override_fonts/font = ExtResource("2_qr7ta")
+theme_override_font_sizes/font_size = 11
+text = "restart"
+flat = true
+
+[node name="Quit" type="Button" parent="."]
+offset_left = 133.0
+offset_top = 102.0
+offset_right = 191.0
+offset_bottom = 119.0
+size_flags_horizontal = 0
+theme_override_fonts/font = ExtResource("2_qr7ta")
+theme_override_font_sizes/font_size = 11
+text = "Quit"
+flat = true
+
+[node name="Label" type="Label" parent="."]
+offset_left = 12.0
+offset_top = 168.0
+offset_right = 312.0
+offset_bottom = 225.0
+theme_override_fonts/font = ExtResource("2_qr7ta")
+theme_override_font_sizes/font_size = 11
+text = "Game by: Zshandi, Lachlann, Nathan"
+
+[connection signal="pressed" from="Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]

@@ -307,6 +307,7 @@ position = Vector2(-140, 70)
 sprite_frames = SubResource("SpriteFrames_y0ipg")
 
 [node name="BreathTimer" type="Timer" parent="BreathGauge"]
+unique_name_in_owner = true
 wait_time = 30.0
 autostart = true
 
