@@ -1,8 +1,11 @@
-[gd_scene load_steps=22 format=3 uid="uid://bn7qsr3svv3vw"]
+[gd_scene load_steps=34 format=3 uid="uid://bn7qsr3svv3vw"]
 
 [ext_resource type="Script" uid="uid://vjguve08ub51" path="res://character.gd" id="1_glpr6"]
 [ext_resource type="Texture2D" uid="uid://bm6se4u52fbpe" path="res://assets/textures/diver/diver sprite sheet with attack.png" id="3_wa5vi"]
 [ext_resource type="AudioStream" uid="uid://x5njpp20yihl" path="res://assets/sounds/hammer hit.wav" id="3_wfnr8"]
+[ext_resource type="AudioStream" uid="uid://dcqdg7q3uueex" path="res://assets/sounds/ambience 2.ogg" id="4_0qfo5"]
+[ext_resource type="Texture2D" uid="uid://gmkj35nv17wf" path="res://assets/textures/diver/oxygen meter.png" id="4_wfnr8"]
+[ext_resource type="Texture2D" uid="uid://bxj7ylmkslrx0" path="res://assets/textures/diver/bubbles.png" id="5_px5sl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pjt0s"]
 size = Vector2(19, 45)
@@ -152,6 +155,69 @@ _data = {
 &"hurt_flash": SubResource("Animation_wa5vi")
 }
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_0qfo5"]
+particles_animation = true
+particles_anim_h_frames = 3
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_88tkl"]
+atlas = ExtResource("4_wfnr8")
+region = Rect2(246, 0, 41, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lpiy1"]
+atlas = ExtResource("4_wfnr8")
+region = Rect2(205, 0, 41, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jx0ln"]
+atlas = ExtResource("4_wfnr8")
+region = Rect2(164, 0, 41, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sm1rv"]
+atlas = ExtResource("4_wfnr8")
+region = Rect2(123, 0, 41, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x1sy7"]
+atlas = ExtResource("4_wfnr8")
+region = Rect2(82, 0, 41, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bwfjh"]
+atlas = ExtResource("4_wfnr8")
+region = Rect2(41, 0, 41, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_px5sl"]
+atlas = ExtResource("4_wfnr8")
+region = Rect2(0, 0, 41, 41)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_y0ipg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_88tkl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lpiy1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jx0ln")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sm1rv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x1sy7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bwfjh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_px5sl")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [node name="Character" type="CharacterBody2D"]
 script = ExtResource("1_glpr6")
 
@@ -194,4 +260,49 @@ libraries = {
 unique_name_in_owner = true
 stream = ExtResource("3_wfnr8")
 
+[node name="ambience" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_0qfo5")
+autoplay = true
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_0qfo5")
+position = Vector2(-140, 70)
+amount = 50
+texture = ExtResource("5_px5sl")
+lifetime = 20.0
+local_coords = true
+emission_shape = 1
+emission_sphere_radius = 10.0
+direction = Vector2(0, -1)
+gravity = Vector2(0, -10)
+initial_velocity_max = 5.0
+anim_offset_max = 1.0
+
+[node name="CPUParticles2D_2" type="CPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_0qfo5")
+position = Vector2(-140, 70)
+emitting = false
+amount = 40
+texture = ExtResource("5_px5sl")
+lifetime = 10.0
+one_shot = true
+explosiveness = 0.95
+local_coords = true
+emission_shape = 1
+emission_sphere_radius = 10.0
+direction = Vector2(0, -1)
+gravity = Vector2(0, -10)
+initial_velocity_min = 30.0
+initial_velocity_max = 30.0
+anim_offset_max = 1.0
+
+[node name="breath_gauge" type="AnimatedSprite2D" parent="."]
+position = Vector2(-140, 70)
+sprite_frames = SubResource("SpriteFrames_y0ipg")
+
+[node name="breath_timer" type="Timer" parent="breath_gauge"]
+wait_time = 5.0
+autostart = true
+
 [connection signal="body_entered" from="Camera2D/InViewArea" to="." method="_on_in_view_area_body_entered"]
+[connection signal="timeout" from="breath_gauge/breath_timer" to="." method="_on_breath_timer_timeout"]

@@ -1,11 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://b3riarhbbwn8y"]
+[gd_scene load_steps=4 format=3 uid="uid://b3riarhbbwn8y"]
 
 [ext_resource type="Script" uid="uid://ddxkgh3qppkbw" path="res://levels/level.gd" id="1_r651i"]
 [ext_resource type="PackedScene" uid="uid://mibhq02wp3yb" path="res://menus/pause_menu.tscn" id="3_wle5s"]
 [ext_resource type="Texture2D" uid="uid://codlc2uml50p6" path="res://assets/textures/Tiles/Tile1.png" id="7_oc8vg"]
-
-[sub_resource type="Resource" id="Resource_vmt1o"]
-metadata/__load_path__ = "res://bubble_character.tscn"
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_r651i")
@@ -32,7 +29,3 @@ rotation = -0.00163265
 texture = ExtResource("7_oc8vg")
 expand_mode = 2
 stretch_mode = 1
-
-[node name="BubbleCharacter" parent="."]
-unique_name_in_owner = true
-position = Vector2(568, 326)

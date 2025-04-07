@@ -30,6 +30,7 @@ var jump_pressed_time_ms := 0
 var is_floating := false
 
 var invincible_frames := false
+var invincibility_time := 2
 
 var is_attacking := false
 var is_attack_windup := false
@@ -37,9 +38,12 @@ var should_release_attack := false
 
 # Stats
 
-var health := 5
+var health := 6
 
 # Logic
+
+func _ready():
+	$breath_gauge.frame = health
 
 func _process(delta: float) -> void:
 	%AnimatedSprite.scale.x = last_direction
@@ -168,14 +172,19 @@ func take_damage(amount:int, from:Node2D = null, knockback:float = 40):
 	if invincible_frames: return
 	
 	health -= amount
-	%AnimationPlayer.play("hurt_flash")
-	invincible_frames = true
+	$breath_gauge.frame = health
+	$CPUParticles2D.lifetime = 10
+	$CPUParticles2D_2.restart()
+	$CPUParticles2D_2.emitting = true
 	if from != null and knockback > 0:
+		%AnimationPlayer.play("hurt_flash")
+		invincible_frames = true
 		knockback(from.global_position, knockback)
+		await get_tree().create_timer(invincibility_time).timeout
+		%AnimationPlayer.play("RESET")
+		invincible_frames = false
 	
-	await get_tree().create_timer(1.2).timeout
-	%AnimationPlayer.play("RESET")
-	invincible_frames = false
+	
 
 func knockback(from_global:Vector2, amount:float):
 	var direction_x := signf(global_position.x - from_global.x)
@@ -186,3 +195,7 @@ func knockback(from_global:Vector2, amount:float):
 func _on_in_view_area_body_entered(body: Node2D) -> void:
 	if "activate" in body:
 		body.activate()
+
+
+func _on_breath_timer_timeout():
+	take_damage(1)
