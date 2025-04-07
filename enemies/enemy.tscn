@@ -1,44 +1,16 @@
-[gd_scene load_steps=8 format=3 uid="uid://csmi5c4uyi8je"]
+[gd_scene load_steps=4 format=3 uid="uid://csmi5c4uyi8je"]
 
 [ext_resource type="Script" uid="uid://tyk5olheak12" path="res://enemies/enemy.gd" id="1_wad7g"]
-[ext_resource type="Texture2D" uid="uid://r5f11dobev38" path="res://assets/textures/enemies/crab enemy.png" id="2_14etv"]
 [ext_resource type="AudioStream" uid="uid://bnjf3euxdirtf" path="res://assets/sounds/crab death underwater.wav" id="3_14etv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j5wjh"]
 size = Vector2(20, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_vef74"]
-atlas = ExtResource("2_14etv")
-region = Rect2(0, 0, 23, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_hve3p"]
-atlas = ExtResource("2_14etv")
-region = Rect2(23, 0, 23, 16)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_mfdv2"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_vef74")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_hve3p")
-}],
-"loop": true,
-"name": &"default",
-"speed": 3.5
-}]
 
 [node name="Enemy" type="CharacterBody2D"]
 script = ExtResource("1_wad7g")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_j5wjh")
-
-[node name="Animation" type="AnimatedSprite2D" parent="."]
-unique_name_in_owner = true
-sprite_frames = SubResource("SpriteFrames_mfdv2")
-frame_progress = 0.942813
 
 [node name="DeathSound" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true

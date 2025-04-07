@@ -1,12 +1,36 @@
-[gd_scene load_steps=3 format=3 uid="uid://ch3ltc6adf1yi"]
+[gd_scene load_steps=7 format=3 uid="uid://ch3ltc6adf1yi"]
 
 [ext_resource type="PackedScene" uid="uid://csmi5c4uyi8je" path="res://enemies/enemy.tscn" id="1_47imk"]
 [ext_resource type="Script" uid="uid://bacurq4mhwurj" path="res://enemies/crab.gd" id="1_wad7g"]
+[ext_resource type="Texture2D" uid="uid://r5f11dobev38" path="res://assets/textures/enemies/crab enemy.png" id="3_myx2k"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vef74"]
+atlas = ExtResource("3_myx2k")
+region = Rect2(0, 0, 23, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hve3p"]
+atlas = ExtResource("3_myx2k")
+region = Rect2(23, 0, 23, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_23o6h"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vef74")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hve3p")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.5
+}]
 
 [node name="Crab" instance=ExtResource("1_47imk")]
 script = ExtResource("1_wad7g")
 movement_speed = 20.0
 initial_direction = -1
 
-[node name="Animation" parent="." index="1"]
-frame_progress = 0.390828
+[node name="Animation" type="AnimatedSprite2D" parent="." index="1"]
+unique_name_in_owner = true
+sprite_frames = SubResource("SpriteFrames_23o6h")
