@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://bbgxy3mqleejg"]
+
+[ext_resource type="Script" uid="uid://dx51it1mofo5d" path="res://final_treasure.gd" id="1_8ij1q"]
+[ext_resource type="Texture2D" uid="uid://cjq7ln1yv27he" path="res://assets/textures/treasure/coins and goblet.png" id="2_8ij1q"]
+[ext_resource type="AudioStream" uid="uid://bubsqea7rfgk2" path="res://assets/sounds/treasure chest.wav" id="3_56btt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h85lg"]
+size = Vector2(16, 14)
+
+[node name="treasure" type="CharacterBody2D"]
+script = ExtResource("1_8ij1q")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_8ij1q")
+
+[node name="DeathSound" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("3_56btt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_h85lg")
