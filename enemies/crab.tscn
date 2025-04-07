@@ -9,4 +9,4 @@ movement_speed = 20.0
 initial_direction = -1
 
 [node name="Animation" parent="." index="1"]
-frame_progress = 0.748616
+frame_progress = 0.390828
