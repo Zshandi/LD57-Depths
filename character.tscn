@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://bn7qsr3svv3vw"]
+[gd_scene load_steps=36 format=3 uid="uid://bn7qsr3svv3vw"]
 
 [ext_resource type="Script" uid="uid://vjguve08ub51" path="res://character.gd" id="1_glpr6"]
 [ext_resource type="Texture2D" uid="uid://bm6se4u52fbpe" path="res://assets/textures/diver/diver sprite sheet with attack.png" id="3_wa5vi"]
@@ -6,6 +6,8 @@
 [ext_resource type="AudioStream" uid="uid://dcqdg7q3uueex" path="res://assets/sounds/ambience 2.ogg" id="4_0qfo5"]
 [ext_resource type="Texture2D" uid="uid://gmkj35nv17wf" path="res://assets/textures/diver/oxygen meter.png" id="4_wfnr8"]
 [ext_resource type="Texture2D" uid="uid://bxj7ylmkslrx0" path="res://assets/textures/diver/bubbles.png" id="5_px5sl"]
+[ext_resource type="AudioStream" uid="uid://bovs75tea6q1a" path="res://assets/music/Dive to Survive v2 looped.mp3" id="7_wdpcj"]
+[ext_resource type="AudioStream" uid="uid://blkvyhipdi7bv" path="res://assets/sounds/underwater jump.wav" id="7_yxww1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pjt0s"]
 size = Vector2(20, 45)
@@ -306,6 +308,15 @@ sprite_frames = SubResource("SpriteFrames_y0ipg")
 [node name="BreathTimer" type="Timer" parent="BreathGauge"]
 wait_time = 5.0
 autostart = true
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("7_wdpcj")
+volume_db = -2.0
+
+[node name="HitSound" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("7_yxww1")
 
 [connection signal="body_entered" from="Camera2D/InViewArea" to="." method="_on_in_view_area_body_entered"]
 [connection signal="timeout" from="BreathGauge/BreathTimer" to="." method="_on_breath_timer_timeout"]
