@@ -72,12 +72,12 @@ func process_attack(delta: float) -> void:
 					is_attack_windup = false
 					for body in %HammerHit_0.get_overlapping_bodies():
 						if "player_attack" in body:
-							body.player_attack()
+							body.player_attack(self)
 					await get_tree().create_timer(0.35).timeout
 					var enemy_found = null
 					for body in %HammerHit_1.get_overlapping_bodies():
 						if "player_attack" in body:
-							body.player_attack()
+							body.player_attack(self)
 							if "global_position" in body:
 								enemy_found = body.global_position
 					if enemy_found != null:
