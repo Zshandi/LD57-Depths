@@ -10,9 +10,6 @@ var initial_direction:int
 var starting_position:Vector2
 var current_direction:int
 
-func hurt_player(player:Character) -> void:
-	pass
-
 func _ready() -> void:
 	if initial_direction == 0:
 		initial_direction = -1
