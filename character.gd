@@ -194,12 +194,15 @@ func take_damage(amount:int, from:Node2D = null, knockback:float = 40):
 		%PanicTimer.start()	
 
 func clear_panic_mode():
-	%PanicSound.stop()
-	%Music.play()
-	%PanicTimer.stop()
-	panic_mode = false
+	if panic_mode:
+		%PanicSound.stop()
+		%Music.play()
+		%PanicTimer.stop()
+		panic_mode = false
 	health = 6
 	take_damage(0)
+	%BreathTimer.stop()
+	%BreathTimer.start()
 	
 func knockback(from_global:Vector2, amount:float):
 	var direction_x := signf(global_position.x - from_global.x)
