@@ -12,7 +12,7 @@ config_version=5
 
 config/name="Dive to Survive"
 config/version="0.0.2"
-run/main_scene="uid://dhgad453x4lht"
+run/main_scene="uid://ct5b601bwmo14"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://assets/icon.png"
 
@@ -27,7 +27,7 @@ window/size/viewport_width=320
 window/size/viewport_height=180
 window/size/window_width_override=1600
 window/size/window_height_override=900
-window/stretch/mode="viewport"
+window/stretch/mode="canvas_items"
 window/stretch/scale_mode="integer"
 
 [editor]

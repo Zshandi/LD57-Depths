@@ -44,6 +44,7 @@ var health := 6
 
 func _ready():
 	%BreathGauge.frame = health
+	%Music.play()
 
 func _process(delta: float) -> void:
 	if is_attacking:
@@ -174,6 +175,7 @@ func take_damage(amount:int, from:Node2D = null, knockback:float = 40):
 	health -= amount
 	%BreathGauge.frame = health
 	if from != null and knockback > 0:
+		%HitSound.play()
 		%CPUParticles2D_2.restart()
 		%CPUParticles2D_2.emitting = true
 		%AnimationPlayer.play("hurt_flash")
