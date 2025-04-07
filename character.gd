@@ -173,10 +173,9 @@ func take_damage(amount:int, from:Node2D = null, knockback:float = 40):
 	
 	health -= amount
 	$breath_gauge.frame = health
-	$CPUParticles2D.lifetime = 10
-	$CPUParticles2D_2.restart()
-	$CPUParticles2D_2.emitting = true
 	if from != null and knockback > 0:
+		$CPUParticles2D_2.restart()
+		$CPUParticles2D_2.emitting = true
 		%AnimationPlayer.play("hurt_flash")
 		invincible_frames = true
 		knockback(from.global_position, knockback)
