@@ -4,7 +4,7 @@
 [ext_resource type="AudioStream" uid="uid://x5njpp20yihl" path="res://assets/sounds/hammer hit.wav" id="2_sgssm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o42jh"]
-size = Vector2(14, 13)
+size = Vector2(12, 12)
 
 [node name="spike_collision" type="CharacterBody2D"]
 script = ExtResource("1_tfhuh")
