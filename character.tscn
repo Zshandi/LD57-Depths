@@ -247,6 +247,8 @@ shape = SubResource("RectangleShape2D_wfnr8")
 unique_name_in_owner = true
 position = Vector2(1, -4)
 sprite_frames = SubResource("SpriteFrames_px5sl")
+animation = &"jump"
+frame_progress = 0.435957
 
 [node name="Camera2D" type="Camera2D" parent="."]
 

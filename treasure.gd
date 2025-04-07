@@ -3,6 +3,7 @@ extends Enemy
 signal collected
 
 func player_attack(character:Character):
+	print_debug("Treasure collect")
 	var bubbles = preload("res://bubbles.tscn").instantiate()
 	bubbles.global_position = global_position
 	add_sibling(bubbles)

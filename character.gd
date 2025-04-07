@@ -47,6 +47,7 @@ var health := 6
 func _ready():
 	%BreathGauge.frame = health
 	%Music.play()
+	velocity.y = max_speed_y
 
 func _process(delta: float) -> void:
 	if is_attacking:
@@ -73,11 +74,13 @@ func process_attack(delta: float) -> void:
 				if should_release_attack:
 					should_release_attack = false
 					is_attack_windup = false
+					var enemy_found = null
 					for body in %HammerHit_0.get_overlapping_bodies():
 						if "player_attack" in body:
 							body.player_attack(self)
+							if "global_position" in body:
+								enemy_found = body.global_position
 					await get_tree().create_timer(0.35).timeout
-					var enemy_found = null
 					for body in %HammerHit_1.get_overlapping_bodies():
 						if "player_attack" in body:
 							body.player_attack(self)
@@ -115,6 +118,9 @@ func process_movement(delta: float) -> void:
 			is_jumping_up = true
 		elif is_jumping_up or is_floating:
 			is_floating = not is_floating
+			is_jumping_up = false
+	elif is_on_floor():
+		is_jumping_up = false
 	
 	if is_jumping_held and velocity.y < 0:
 		if Input.is_action_pressed("jump"):
@@ -124,11 +130,9 @@ func process_movement(delta: float) -> void:
 	else:
 		is_jumping_held = false
 	
-	if velocity.y >= 0:
-		is_jumping_up = false
 	
 	var x_change := 0.0
-	current_direction = Input.get_axis("left", "right")
+	current_direction = roundf(Input.get_axis("left", "right"))
 	if current_direction == 0:
 		if abs(velocity.x) < decel_x:
 			x_change = -velocity.x

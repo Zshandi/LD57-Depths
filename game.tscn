@@ -10,7 +10,7 @@
 [ext_resource type="FontFile" uid="uid://bdrm0wxjwuc65" path="res://assets/fonts/zig/zig_____.ttf" id="6_ryrav"]
 [ext_resource type="PackedScene" uid="uid://ch3ltc6adf1yi" path="res://enemies/crab.tscn" id="7_eow3j"]
 [ext_resource type="PackedScene" path="res://final_treasure.tscn" id="7_mfdv2"]
-[ext_resource type="PackedScene" path="res://treasure.tscn" id="10_hve3p"]
+[ext_resource type="PackedScene" uid="uid://wa7f3f07wyd8" path="res://treasure.tscn" id="10_hve3p"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vef74"]
 texture = ExtResource("2_j5wjh")
@@ -303,9 +303,6 @@ initial_direction = 1
 [node name="Crab_6" parent="." instance=ExtResource("7_eow3j")]
 position = Vector2(595, 456)
 
-[node name="Character" parent="." instance=ExtResource("2_fc0e3")]
-position = Vector2(144, 16)
-
 [node name="Tutorial" type="Node2D" parent="." node_paths=PackedStringArray("player")]
 script = ExtResource("5_ryrav")
 player = NodePath("../Character")
@@ -381,6 +378,18 @@ offset_bottom = 26.0
 text = "C to open"
 label_settings = SubResource("LabelSettings_eow3j")
 
+[node name="Crab" parent="Tutorial" instance=ExtResource("7_eow3j")]
+position = Vector2(712, 760)
+
+[node name="Crab_2" parent="Tutorial" instance=ExtResource("7_eow3j")]
+position = Vector2(712, 776)
+
+[node name="Crab_3" parent="Tutorial" instance=ExtResource("7_eow3j")]
+position = Vector2(712, 744)
+
+[node name="Crab_4" parent="Tutorial" instance=ExtResource("7_eow3j")]
+position = Vector2(592, 744)
+
 [node name="treasure" parent="." instance=ExtResource("10_hve3p")]
 position = Vector2(608, 56)
 
@@ -395,6 +404,9 @@ position = Vector2(240, 408)
 
 [node name="treasure_5" parent="." instance=ExtResource("10_hve3p")]
 position = Vector2(672, 440)
+
+[node name="Character" parent="." instance=ExtResource("2_fc0e3")]
+position = Vector2(144, -24)
 
 [connection signal="body_entered" from="Tutorial/JumpTrigger" to="Tutorial" method="_on_jump_trigger_body_entered"]
 [connection signal="body_entered" from="Tutorial/FloatTrigger" to="Tutorial" method="_on_float_trigger_body_entered"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://citigqx6swbeh"]
+[gd_scene load_steps=5 format=3 uid="uid://wa7f3f07wyd8"]
 
 [ext_resource type="Script" uid="uid://6h1t4o7y1plm" path="res://treasure.gd" id="1_2unnm"]
 [ext_resource type="Texture2D" uid="uid://di2xudutjrxtb" path="res://assets/textures/treasure/old treasure chest.png" id="1_dubxd"]
@@ -15,6 +15,7 @@ texture = ExtResource("1_dubxd")
 
 [node name="DeathSound" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
+process_mode = 3
 stream = ExtResource("2_h85lg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
