@@ -36,6 +36,8 @@ var is_attacking := false
 var is_attack_windup := false
 var should_release_attack := false
 
+var panic_mode := false
+
 # Stats
 
 var health := 6
@@ -60,6 +62,7 @@ func _process(delta: float) -> void:
 			%AnimatedSprite.play("default")
 	else:
 		%AnimatedSprite.play("jump")
+				
 
 func process_attack(delta: float) -> void:
 	if is_attacking:
@@ -184,9 +187,20 @@ func take_damage(amount:int, from:Node2D = null, knockback:float = 40):
 		await get_tree().create_timer(invincibility_time).timeout
 		%AnimationPlayer.play("RESET")
 		invincible_frames = false
-	
-	
+	if health <= 0 and not panic_mode:
+		panic_mode = true
+		%Music.stop()
+		%PanicSound.play()
+		%PanicTimer.start()	
 
+func clear_panic_mode():
+	%PanicSound.stop()
+	%Music.play()
+	%PanicTimer.stop()
+	panic_mode = false
+	health = 6
+	take_damage(0)
+	
 func knockback(from_global:Vector2, amount:float):
 	var direction_x := signf(global_position.x - from_global.x)
 	var direction := Vector2(direction_x, -0.7).normalized()
@@ -200,3 +214,7 @@ func _on_in_view_area_body_entered(body: Node2D) -> void:
 
 func _on_breath_timer_timeout():
 	take_damage(1)
+
+
+func _on_panic_timer_timeout():
+	get_tree().change_scene_to_file("res://game_over.tscn")
