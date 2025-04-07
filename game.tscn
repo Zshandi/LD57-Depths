@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://dhgad453x4lht"]
+[gd_scene load_steps=17 format=4 uid="uid://dhgad453x4lht"]
 
 [ext_resource type="Texture2D" uid="uid://cya60de6o6xii" path="res://assets/textures/background gradient.png" id="1_7jktm"]
 [ext_resource type="PackedScene" uid="uid://bn7qsr3svv3vw" path="res://character.tscn" id="2_fc0e3"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://5762tk01p54b" path="res://tutorial.gd" id="5_ryrav"]
 [ext_resource type="FontFile" uid="uid://bdrm0wxjwuc65" path="res://assets/fonts/zig/zig_____.ttf" id="6_ryrav"]
 [ext_resource type="PackedScene" uid="uid://ch3ltc6adf1yi" path="res://enemies/crab.tscn" id="7_eow3j"]
+[ext_resource type="PackedScene" uid="uid://bvy73k3lwgm5g" path="res://spike_collision.tscn" id="9_vef74"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vef74"]
 texture = ExtResource("2_j5wjh")
@@ -307,6 +308,13 @@ offset_right = 492.0
 offset_bottom = 12.0
 text = "double x"
 label_settings = SubResource("LabelSettings_eow3j")
+
+[node name="spike_collision" parent="." instance=ExtResource("9_vef74")]
+position = Vector2(1016, -24)
+metadata/_edit_group_ = true
+
+[node name="spike_collision_2" parent="." instance=ExtResource("9_vef74")]
+position = Vector2(1032, -24)
 
 [connection signal="body_entered" from="Tutorial/JumpTrigger" to="Tutorial" method="_on_jump_trigger_body_entered"]
 [connection signal="body_entered" from="Tutorial/FloatTrigger" to="Tutorial" method="_on_float_trigger_body_entered"]

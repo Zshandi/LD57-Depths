@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dyfr4hw5u5xt7"
+path="res://.godot/imported/Dive to Survive! (v1).mp3-aa0ca233e35eac06bb139fe431a75611.mp3str"
+
+[deps]
+
+source_file="res://assets/music/Dive to Survive! (v1).mp3"
+dest_files=["res://.godot/imported/Dive to Survive! (v1).mp3-aa0ca233e35eac06bb139fe431a75611.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

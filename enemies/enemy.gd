@@ -4,7 +4,8 @@ class_name Enemy
 var activated := false
 
 func _ready() -> void:
-	%Animation.play("default")
+	if %Animation != null:
+		%Animation.play("default")
 
 func hurt_player(player:Character) -> void:
 	player.take_damage(1, self)
