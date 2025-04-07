@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=4 uid="uid://dhgad453x4lht"]
+[gd_scene load_steps=19 format=4 uid="uid://dhgad453x4lht"]
 
 [ext_resource type="Texture2D" uid="uid://cya60de6o6xii" path="res://assets/textures/background gradient.png" id="1_7jktm"]
 [ext_resource type="PackedScene" uid="uid://bn7qsr3svv3vw" path="res://character.tscn" id="2_fc0e3"]
@@ -9,6 +9,8 @@
 [ext_resource type="PackedScene" uid="uid://dtlrrmusol35h" path="res://spike_collision.tscn" id="5_vef74"]
 [ext_resource type="FontFile" uid="uid://bdrm0wxjwuc65" path="res://assets/fonts/zig/zig_____.ttf" id="6_ryrav"]
 [ext_resource type="PackedScene" uid="uid://ch3ltc6adf1yi" path="res://enemies/crab.tscn" id="7_eow3j"]
+[ext_resource type="PackedScene" path="res://final_treasure.tscn" id="7_mfdv2"]
+[ext_resource type="PackedScene" path="res://treasure.tscn" id="10_hve3p"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vef74"]
 texture = ExtResource("2_j5wjh")
@@ -287,6 +289,9 @@ position = Vector2(632, 456)
 position = Vector2(392, 312)
 initial_direction = 1
 
+[node name="treasure" parent="Terrain" instance=ExtResource("7_mfdv2")]
+position = Vector2(592, 760)
+
 [node name="Crab_2" parent="." instance=ExtResource("7_eow3j")]
 position = Vector2(798, 376)
 initial_direction = 1
@@ -299,7 +304,7 @@ initial_direction = 1
 position = Vector2(595, 456)
 
 [node name="Character" parent="." instance=ExtResource("2_fc0e3")]
-position = Vector2(192, 296)
+position = Vector2(144, 16)
 
 [node name="Tutorial" type="Node2D" parent="." node_paths=PackedStringArray("player")]
 script = ExtResource("5_ryrav")
@@ -338,6 +343,14 @@ position = Vector2(290, 45)
 shape = SubResource("RectangleShape2D_eow3j")
 debug_color = Color(0.514344, 0.576553, 7.70092e-07, 0.42)
 
+[node name="AttackTrigger" type="Area2D" parent="Tutorial"]
+position = Vector2(368, -8)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tutorial/AttackTrigger"]
+position = Vector2(290, 45)
+shape = SubResource("RectangleShape2D_eow3j")
+debug_color = Color(0.514344, 0.576553, 7.70092e-07, 0.42)
+
 [node name="JumpHelp" type="Label" parent="Tutorial"]
 unique_name_in_owner = true
 visible = false
@@ -358,6 +371,33 @@ offset_bottom = 12.0
 text = "double x"
 label_settings = SubResource("LabelSettings_eow3j")
 
+[node name="AttackHelp" type="Label" parent="Tutorial"]
+unique_name_in_owner = true
+visible = false
+offset_left = 568.0
+offset_top = 16.0
+offset_right = 656.0
+offset_bottom = 26.0
+text = "C to open"
+label_settings = SubResource("LabelSettings_eow3j")
+
+[node name="treasure" parent="." instance=ExtResource("10_hve3p")]
+position = Vector2(608, 56)
+
+[node name="treasure_2" parent="." instance=ExtResource("10_hve3p")]
+position = Vector2(768, 360)
+
+[node name="treasure_3" parent="." instance=ExtResource("10_hve3p")]
+position = Vector2(192, 312)
+
+[node name="treasure_4" parent="." instance=ExtResource("10_hve3p")]
+position = Vector2(240, 408)
+
+[node name="treasure_5" parent="." instance=ExtResource("10_hve3p")]
+position = Vector2(672, 440)
+
 [connection signal="body_entered" from="Tutorial/JumpTrigger" to="Tutorial" method="_on_jump_trigger_body_entered"]
 [connection signal="body_entered" from="Tutorial/FloatTrigger" to="Tutorial" method="_on_float_trigger_body_entered"]
 [connection signal="body_entered" from="Tutorial/FloatTrigger_End" to="Tutorial" method="_on_float_trigger_end_body_entered"]
+[connection signal="body_entered" from="Tutorial/AttackTrigger" to="Tutorial" method="_on_attack_trigger_body_entered"]
+[connection signal="collected" from="treasure" to="Tutorial" method="_on_treasure_collected"]

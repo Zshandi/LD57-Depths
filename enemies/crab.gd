@@ -19,7 +19,8 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	if not activated: return
-	velocity = Vector2(current_direction * movement_speed, 0) + get_gravity()
+	velocity += get_gravity()
+	velocity.x = current_direction * movement_speed
 	print_debug("current_direction: ", current_direction)
 	move_and_slide()
 	

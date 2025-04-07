@@ -2,6 +2,7 @@ extends Node2D
 
 var has_moved := false
 var has_jumped := false
+var has_attacked := false
 
 var float_started := false
 var has_floated := false
@@ -45,3 +46,13 @@ func _on_float_trigger_end_body_entered(body: Node2D) -> void:
 	if body != player: return
 	has_floated = true
 	%FloatHelp.hide()
+
+
+func _on_treasure_collected() -> void:
+	has_attacked = true
+	%AttackHelp.hide()
+
+
+func _on_attack_trigger_body_entered(body: Node2D) -> void:
+	if not has_attacked:
+		%AttackHelp.show()
