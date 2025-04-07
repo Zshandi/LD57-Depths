@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://bn7qsr3svv3vw"]
+[gd_scene load_steps=36 format=3 uid="uid://bn7qsr3svv3vw"]
 
 [ext_resource type="Script" uid="uid://vjguve08ub51" path="res://character.gd" id="1_glpr6"]
 [ext_resource type="Texture2D" uid="uid://bm6se4u52fbpe" path="res://assets/textures/diver/diver sprite sheet with attack.png" id="3_wa5vi"]
@@ -8,7 +8,6 @@
 [ext_resource type="Texture2D" uid="uid://bxj7ylmkslrx0" path="res://assets/textures/diver/bubbles.png" id="5_px5sl"]
 [ext_resource type="AudioStream" uid="uid://bovs75tea6q1a" path="res://assets/music/Dive to Survive v2 looped.mp3" id="7_wdpcj"]
 [ext_resource type="AudioStream" uid="uid://blkvyhipdi7bv" path="res://assets/sounds/underwater jump.wav" id="7_yxww1"]
-[ext_resource type="AudioStream" uid="uid://br8ke8cxg322a" path="res://assets/music/Oxygen low v3.mp3" id="9_qi5as"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pjt0s"]
 size = Vector2(20, 45)
@@ -319,15 +318,5 @@ volume_db = -2.0
 unique_name_in_owner = true
 stream = ExtResource("7_yxww1")
 
-[node name="PanicSound" type="AudioStreamPlayer" parent="."]
-unique_name_in_owner = true
-stream = ExtResource("9_qi5as")
-
-[node name="PanicTimer" type="Timer" parent="."]
-unique_name_in_owner = true
-wait_time = 18.0
-one_shot = true
-
 [connection signal="body_entered" from="Camera2D/InViewArea" to="." method="_on_in_view_area_body_entered"]
 [connection signal="timeout" from="BreathGauge/BreathTimer" to="." method="_on_breath_timer_timeout"]
-[connection signal="timeout" from="PanicTimer" to="." method="_on_panic_timer_timeout"]
