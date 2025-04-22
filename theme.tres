@@ -1,0 +1,18 @@
+[gd_resource type="Theme" load_steps=5 format=3 uid="uid://caa752ro02udm"]
+
+[ext_resource type="FontFile" uid="uid://bfowvf7yn3i71" path="res://assets/fonts/enter_command/EnterCommand-Bold.ttf" id="1_cjfk0"]
+[ext_resource type="FontFile" uid="uid://cvuvxws4hj6tt" path="res://assets/fonts/enter_command/EnterCommand.ttf" id="2_vj6dk"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_glbon"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_nlkkf"]
+
+[resource]
+default_font = ExtResource("2_vj6dk")
+Button/colors/font_focus_color = Color(0.854902, 1, 0.968627, 1)
+Button/colors/font_hover_color = Color(0.854902, 1, 0.968627, 1)
+Button/colors/font_hover_pressed_color = Color(0.580392, 1, 0.984314, 1)
+Button/colors/font_pressed_color = Color(0.580392, 1, 0.984314, 1)
+Button/fonts/font = ExtResource("1_cjfk0")
+Button/styles/focus = SubResource("StyleBoxLine_glbon")
+Button/styles/hover = SubResource("StyleBoxLine_nlkkf")
