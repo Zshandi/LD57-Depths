@@ -1,58 +1,89 @@
-[gd_scene load_steps=5 format=3 uid="uid://ct5b601bwmo14"]
+[gd_scene load_steps=6 format=3 uid="uid://ct5b601bwmo14"]
 
 [ext_resource type="Texture2D" uid="uid://bvwngs6414l87" path="res://assets/title screen.png" id="1_06t4h"]
 [ext_resource type="Script" uid="uid://dinbmo76s8yb0" path="res://main_menu.gd" id="1_fu7sn"]
 [ext_resource type="Theme" uid="uid://caa752ro02udm" path="res://theme.tres" id="3_jix8l"]
 [ext_resource type="FontFile" uid="uid://bfowvf7yn3i71" path="res://assets/fonts/enter_command/EnterCommand-Bold.ttf" id="4_glbon"]
+[ext_resource type="Script" uid="uid://c8p4pcr2iqfxs" path="res://options_menu.gd" id="5_glbon"]
 
-[node name="MainMenu" type="Node2D"]
+[node name="TitleMenu" type="CanvasLayer"]
 script = ExtResource("1_fu7sn")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(160, 90)
+[node name="MainContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TitleScreenImage" type="TextureRect" parent="MainContainer"]
+layout_mode = 2
 texture = ExtResource("1_06t4h")
 
-[node name="Start" type="Button" parent="."]
-offset_left = 132.0
-offset_top = 73.0
-offset_right = 190.0
-offset_bottom = 93.0
-size_flags_horizontal = 0
-focus_neighbor_left = NodePath("../Quit")
-focus_neighbor_top = NodePath("../Quit")
-focus_neighbor_right = NodePath("../Quit")
-focus_neighbor_bottom = NodePath("../Quit")
-focus_next = NodePath("../Quit")
-focus_previous = NodePath("../Quit")
+[node name="MainMenu" type="MarginContainer" parent="MainContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/margin_top = 65
+
+[node name="ButtonContainer" type="VBoxContainer" parent="MainContainer/MainMenu"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_constants/separation = -3
+
+[node name="Start" type="Button" parent="MainContainer/MainMenu/ButtonContainer"]
+unique_name_in_owner = true
+layout_mode = 2
 theme = ExtResource("3_jix8l")
 text = "Start"
 flat = true
 
-[node name="Quit" type="Button" parent="."]
-offset_left = 133.0
-offset_top = 102.0
-offset_right = 191.0
-offset_bottom = 122.0
-size_flags_horizontal = 0
-focus_neighbor_left = NodePath("../Start")
-focus_neighbor_top = NodePath("../Start")
-focus_neighbor_right = NodePath("../Start")
-focus_neighbor_bottom = NodePath("../Start")
-focus_next = NodePath("../Start")
-focus_previous = NodePath("../Start")
+[node name="Options" type="Button" parent="MainContainer/MainMenu/ButtonContainer"]
+layout_mode = 2
+theme = ExtResource("3_jix8l")
+text = "Options"
+flat = true
+
+[node name="Quit" type="Button" parent="MainContainer/MainMenu/ButtonContainer"]
+layout_mode = 2
 theme = ExtResource("3_jix8l")
 text = "Quit"
 flat = true
 
-[node name="Label" type="Label" parent="."]
-offset_left = 12.0
-offset_top = 166.0
-offset_right = 312.0
-offset_bottom = 180.0
+[node name="ByLine" type="Label" parent="MainContainer/MainMenu"]
+layout_mode = 2
+size_flags_vertical = 8
 theme = ExtResource("3_jix8l")
 theme_override_fonts/font = ExtResource("4_glbon")
 text = "Game by: Zshandi, Lachlann, Nathan"
 horizontal_alignment = 1
 
-[connection signal="pressed" from="Start" to="." method="_on_start_pressed"]
-[connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]
+[node name="OptionsMenu" type="MarginContainer" parent="MainContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_override_constants/margin_top = 65
+script = ExtResource("5_glbon")
+
+[node name="ButtonContainer" type="VBoxContainer" parent="MainContainer/OptionsMenu"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+
+[node name="Back" type="Button" parent="MainContainer/OptionsMenu/ButtonContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("3_jix8l")
+text = "Back"
+flat = true
+
+[node name="CreditsMenu" type="MarginContainer" parent="MainContainer"]
+visible = false
+layout_mode = 2
+
+[connection signal="pressed" from="MainContainer/MainMenu/ButtonContainer/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="MainContainer/MainMenu/ButtonContainer/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="MainContainer/MainMenu/ButtonContainer/Quit" to="." method="_on_quit_pressed"]
+[connection signal="exited" from="MainContainer/OptionsMenu" to="." method="_on_options_menu_exited"]
+[connection signal="visibility_changed" from="MainContainer/OptionsMenu" to="MainContainer/OptionsMenu" method="_on_visibility_changed"]
+[connection signal="pressed" from="MainContainer/OptionsMenu/ButtonContainer/Back" to="MainContainer/OptionsMenu" method="_on_back_pressed"]
