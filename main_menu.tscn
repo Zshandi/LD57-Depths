@@ -6,7 +6,7 @@
 [ext_resource type="FontFile" uid="uid://bfowvf7yn3i71" path="res://assets/fonts/enter_command/EnterCommand-Bold.ttf" id="4_glbon"]
 [ext_resource type="Script" uid="uid://c8p4pcr2iqfxs" path="res://options_menu.gd" id="5_glbon"]
 
-[node name="TitleMenu" type="CanvasLayer"]
+[node name="TitleScreen" type="CanvasLayer"]
 script = ExtResource("1_fu7sn")
 
 [node name="MainContainer" type="MarginContainer" parent="."]
@@ -20,37 +20,40 @@ grow_vertical = 2
 layout_mode = 2
 texture = ExtResource("1_06t4h")
 
-[node name="MainMenu" type="MarginContainer" parent="MainContainer"]
-unique_name_in_owner = true
+[node name="MenusContainer" type="MarginContainer" parent="MainContainer"]
 layout_mode = 2
 theme_override_constants/margin_top = 65
 
-[node name="ButtonContainer" type="VBoxContainer" parent="MainContainer/MainMenu"]
+[node name="MainMenu" type="MarginContainer" parent="MainContainer/MenusContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="ButtonContainer" type="VBoxContainer" parent="MainContainer/MenusContainer/MainMenu"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
 theme_override_constants/separation = -3
 
-[node name="Start" type="Button" parent="MainContainer/MainMenu/ButtonContainer"]
+[node name="Start" type="Button" parent="MainContainer/MenusContainer/MainMenu/ButtonContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("3_jix8l")
 text = "Start"
 flat = true
 
-[node name="Options" type="Button" parent="MainContainer/MainMenu/ButtonContainer"]
+[node name="Options" type="Button" parent="MainContainer/MenusContainer/MainMenu/ButtonContainer"]
 layout_mode = 2
 theme = ExtResource("3_jix8l")
 text = "Options"
 flat = true
 
-[node name="Quit" type="Button" parent="MainContainer/MainMenu/ButtonContainer"]
+[node name="Quit" type="Button" parent="MainContainer/MenusContainer/MainMenu/ButtonContainer"]
 layout_mode = 2
 theme = ExtResource("3_jix8l")
 text = "Quit"
 flat = true
 
-[node name="ByLine" type="Label" parent="MainContainer/MainMenu"]
+[node name="ByLine" type="Label" parent="MainContainer/MenusContainer/MainMenu"]
 layout_mode = 2
 size_flags_vertical = 8
 theme = ExtResource("3_jix8l")
@@ -58,32 +61,31 @@ theme_override_fonts/font = ExtResource("4_glbon")
 text = "Game by: Zshandi, Lachlann, Nathan"
 horizontal_alignment = 1
 
-[node name="OptionsMenu" type="MarginContainer" parent="MainContainer"]
+[node name="OptionsMenu" type="MarginContainer" parent="MainContainer/MenusContainer"]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
-theme_override_constants/margin_top = 65
 script = ExtResource("5_glbon")
 
-[node name="ButtonContainer" type="VBoxContainer" parent="MainContainer/OptionsMenu"]
+[node name="ButtonContainer" type="VBoxContainer" parent="MainContainer/MenusContainer/OptionsMenu"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
 
-[node name="Back" type="Button" parent="MainContainer/OptionsMenu/ButtonContainer"]
+[node name="Back" type="Button" parent="MainContainer/MenusContainer/OptionsMenu/ButtonContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("3_jix8l")
 text = "Back"
 flat = true
 
-[node name="CreditsMenu" type="MarginContainer" parent="MainContainer"]
+[node name="CreditsMenu" type="MarginContainer" parent="MainContainer/MenusContainer"]
 visible = false
 layout_mode = 2
 
-[connection signal="pressed" from="MainContainer/MainMenu/ButtonContainer/Start" to="." method="_on_start_pressed"]
-[connection signal="pressed" from="MainContainer/MainMenu/ButtonContainer/Options" to="." method="_on_options_pressed"]
-[connection signal="pressed" from="MainContainer/MainMenu/ButtonContainer/Quit" to="." method="_on_quit_pressed"]
-[connection signal="exited" from="MainContainer/OptionsMenu" to="." method="_on_options_menu_exited"]
-[connection signal="visibility_changed" from="MainContainer/OptionsMenu" to="MainContainer/OptionsMenu" method="_on_visibility_changed"]
-[connection signal="pressed" from="MainContainer/OptionsMenu/ButtonContainer/Back" to="MainContainer/OptionsMenu" method="_on_back_pressed"]
+[connection signal="pressed" from="MainContainer/MenusContainer/MainMenu/ButtonContainer/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="MainContainer/MenusContainer/MainMenu/ButtonContainer/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="MainContainer/MenusContainer/MainMenu/ButtonContainer/Quit" to="." method="_on_quit_pressed"]
+[connection signal="exited" from="MainContainer/MenusContainer/OptionsMenu" to="." method="_on_options_menu_exited"]
+[connection signal="visibility_changed" from="MainContainer/MenusContainer/OptionsMenu" to="MainContainer/MenusContainer/OptionsMenu" method="_on_visibility_changed"]
+[connection signal="pressed" from="MainContainer/MenusContainer/OptionsMenu/ButtonContainer/Back" to="MainContainer/MenusContainer/OptionsMenu" method="_on_back_pressed"]
