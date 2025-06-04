@@ -1,7 +1,9 @@
-[gd_resource type="Theme" load_steps=5 format=3 uid="uid://caa752ro02udm"]
+[gd_resource type="Theme" load_steps=7 format=3 uid="uid://caa752ro02udm"]
 
 [ext_resource type="FontFile" uid="uid://bfowvf7yn3i71" path="res://assets/fonts/enter_command/EnterCommand-Bold.ttf" id="1_cjfk0"]
+[ext_resource type="Texture2D" uid="uid://cdtxk0e6incyb" path="res://assets/textures/slider/slider_grabber.png" id="2_110ce"]
 [ext_resource type="FontFile" uid="uid://cvuvxws4hj6tt" path="res://assets/fonts/enter_command/EnterCommand.ttf" id="2_vj6dk"]
+[ext_resource type="Texture2D" uid="uid://br3wk4lxbokfw" path="res://assets/textures/slider/slider_grabber_highlight.png" id="3_05tig"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cjfk0"]
 
@@ -16,3 +18,6 @@ Button/colors/font_pressed_color = Color(0.580392, 1, 0.984314, 1)
 Button/fonts/font = ExtResource("1_cjfk0")
 Button/styles/focus = SubResource("StyleBoxEmpty_cjfk0")
 Button/styles/hover = SubResource("StyleBoxEmpty_vj6dk")
+HSlider/icons/grabber = ExtResource("2_110ce")
+HSlider/icons/grabber_disabled = null
+HSlider/icons/grabber_highlight = ExtResource("3_05tig")

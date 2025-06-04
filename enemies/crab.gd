@@ -14,14 +14,14 @@ func _ready() -> void:
 	if initial_direction == 0:
 		initial_direction = -1
 	current_direction = initial_direction
-	if not Engine.is_editor_hint():
-		super._ready()
+	if Engine.is_editor_hint(): return
+	super._ready()
 
 func _physics_process(delta: float) -> void:
+	if Engine.is_editor_hint(): return
 	if not activated: return
 	velocity += get_gravity()
 	velocity.x = current_direction * movement_speed
-	print_debug("current_direction: ", current_direction)
 	move_and_slide()
 	
 	for index in range(0, get_slide_collision_count()):

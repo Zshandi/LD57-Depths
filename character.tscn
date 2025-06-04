@@ -317,6 +317,7 @@ autostart = true
 unique_name_in_owner = true
 stream = ExtResource("7_wdpcj")
 volume_db = -6.0
+bus = &"Music"
 
 [node name="HitSound" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true

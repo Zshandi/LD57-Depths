@@ -1,10 +1,23 @@
-[gd_scene load_steps=6 format=3 uid="uid://ct5b601bwmo14"]
+[gd_scene load_steps=11 format=3 uid="uid://ct5b601bwmo14"]
 
 [ext_resource type="Texture2D" uid="uid://bvwngs6414l87" path="res://assets/title screen.png" id="1_06t4h"]
 [ext_resource type="Script" uid="uid://dinbmo76s8yb0" path="res://main_menu.gd" id="1_fu7sn"]
 [ext_resource type="Theme" uid="uid://caa752ro02udm" path="res://theme.tres" id="3_jix8l"]
 [ext_resource type="FontFile" uid="uid://bfowvf7yn3i71" path="res://assets/fonts/enter_command/EnterCommand-Bold.ttf" id="4_glbon"]
 [ext_resource type="Script" uid="uid://c8p4pcr2iqfxs" path="res://options_menu.gd" id="5_glbon"]
+[ext_resource type="Texture2D" uid="uid://bb5845iclpsja" path="res://assets/icons/music.png" id="6_nlkkf"]
+[ext_resource type="Texture2D" uid="uid://bhnw7bxso3dqe" path="res://assets/icons/sound.png" id="7_qe12f"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_glbon"]
+thickness = 5
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_nlkkf"]
+color = Color(0.72, 0.72, 0.72, 1)
+thickness = 3
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_qe12f"]
+color = Color(1, 1, 1, 1)
+thickness = 3
 
 [node name="TitleScreen" type="CanvasLayer"]
 script = ExtResource("1_fu7sn")
@@ -26,6 +39,7 @@ theme_override_constants/margin_top = 65
 
 [node name="MainMenu" type="MarginContainer" parent="MainContainer/MenusContainer"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 
 [node name="ButtonContainer" type="VBoxContainer" parent="MainContainer/MenusContainer/MainMenu"]
@@ -63,7 +77,6 @@ horizontal_alignment = 1
 
 [node name="OptionsMenu" type="MarginContainer" parent="MainContainer/MenusContainer"]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
 script = ExtResource("5_glbon")
 
@@ -79,6 +92,56 @@ theme = ExtResource("3_jix8l")
 text = "Back"
 flat = true
 
+[node name="MusicVolumeContainer" type="HBoxContainer" parent="MainContainer/MenusContainer/OptionsMenu/ButtonContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureRect" parent="MainContainer/MenusContainer/OptionsMenu/ButtonContainer/MusicVolumeContainer"]
+layout_mode = 2
+texture = ExtResource("6_nlkkf")
+
+[node name="MusicVolume" type="HSlider" parent="MainContainer/MenusContainer/OptionsMenu/ButtonContainer/MusicVolumeContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme = ExtResource("3_jix8l")
+theme_override_styles/slider = SubResource("StyleBoxLine_glbon")
+theme_override_styles/grabber_area = SubResource("StyleBoxLine_nlkkf")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxLine_qe12f")
+step = 20.0
+value = 100.0
+
+[node name="SoundVolumeContainer" type="HBoxContainer" parent="MainContainer/MenusContainer/OptionsMenu/ButtonContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureRect" parent="MainContainer/MenusContainer/OptionsMenu/ButtonContainer/SoundVolumeContainer"]
+layout_mode = 2
+texture = ExtResource("7_qe12f")
+
+[node name="SoundVolume" type="HSlider" parent="MainContainer/MenusContainer/OptionsMenu/ButtonContainer/SoundVolumeContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme = ExtResource("3_jix8l")
+theme_override_styles/slider = SubResource("StyleBoxLine_glbon")
+theme_override_styles/grabber_area = SubResource("StyleBoxLine_nlkkf")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxLine_qe12f")
+step = 20.0
+value = 100.0
+
+[node name="FullScreenButton" type="Button" parent="MainContainer/MenusContainer/OptionsMenu/ButtonContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("3_jix8l")
+toggle_mode = true
+text = "Full Screen"
+flat = true
+
 [node name="CreditsMenu" type="MarginContainer" parent="MainContainer/MenusContainer"]
 visible = false
 layout_mode = 2
@@ -89,3 +152,6 @@ layout_mode = 2
 [connection signal="exited" from="MainContainer/MenusContainer/OptionsMenu" to="." method="_on_options_menu_exited"]
 [connection signal="visibility_changed" from="MainContainer/MenusContainer/OptionsMenu" to="MainContainer/MenusContainer/OptionsMenu" method="_on_visibility_changed"]
 [connection signal="pressed" from="MainContainer/MenusContainer/OptionsMenu/ButtonContainer/Back" to="MainContainer/MenusContainer/OptionsMenu" method="_on_back_pressed"]
+[connection signal="value_changed" from="MainContainer/MenusContainer/OptionsMenu/ButtonContainer/MusicVolumeContainer/MusicVolume" to="MainContainer/MenusContainer/OptionsMenu" method="_on_music_volume_value_changed"]
+[connection signal="value_changed" from="MainContainer/MenusContainer/OptionsMenu/ButtonContainer/SoundVolumeContainer/SoundVolume" to="MainContainer/MenusContainer/OptionsMenu" method="_on_sound_volume_value_changed"]
+[connection signal="toggled" from="MainContainer/MenusContainer/OptionsMenu/ButtonContainer/FullScreenButton" to="MainContainer/MenusContainer/OptionsMenu" method="_on_full_screen_button_toggled"]

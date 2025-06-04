@@ -20,6 +20,7 @@ config/icon="res://assets/icon.png"
 
 MusicPlayer="*res://music_player.gd"
 SoundPlayer="*res://sound_player.gd"
+Options="*res://options.gd"
 
 [display]
 
@@ -28,7 +29,6 @@ window/size/viewport_height=180
 window/size/window_width_override=1600
 window/size/window_height_override=900
 window/stretch/mode="viewport"
-window/stretch/scale_mode="integer"
 
 [editor]
 
