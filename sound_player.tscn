@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://5xsmg4m3pkwc"]
+
+[ext_resource type="Script" uid="uid://b838scjmfpijx" path="res://sound_player.gd" id="1_j71by"]
+[ext_resource type="AudioStream" uid="uid://bnjf3euxdirtf" path="res://assets/sounds/crab death underwater.wav" id="2_t28fc"]
+
+[node name="SoundPlayer" type="Node"]
+script = ExtResource("1_j71by")
+
+[node name="RegisteredSounds" type="Node" parent="."]
+unique_name_in_owner = true
+
+[node name="TestSound" type="AudioStreamPlayer" parent="RegisteredSounds"]
+stream = ExtResource("2_t28fc")

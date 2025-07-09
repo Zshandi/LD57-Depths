@@ -18,8 +18,8 @@ config/icon="res://assets/icon.png"
 
 [autoload]
 
+SoundPlayer="*res://sound_player.tscn"
 MusicPlayer="*res://music_player.gd"
-SoundPlayer="*res://sound_player.gd"
 Options="*res://options.gd"
 
 [display]
