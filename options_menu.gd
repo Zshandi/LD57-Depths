@@ -13,10 +13,10 @@ func _ready() -> void:
 	%MusicVolume.set_value_no_signal(Options.music_volume * 100)
 	%SoundVolume.set_value_no_signal(Options.sound_volume * 100)
 	%FullScreenButton.set_pressed_no_signal(Options.is_full_screen)
-	update_textures()
+	_update_textures()
 
 func _on_visibility_changed() -> void:
-	if is_visible_in_tree():
+	if is_inside_tree() and is_visible_in_tree():
 		%Back.grab_focus()
 
 func _on_back_pressed() -> void:
@@ -25,14 +25,33 @@ func _on_back_pressed() -> void:
 func _on_music_volume_value_changed(value: float) -> void:
 	Options.music_volume = %MusicVolume.value / 100
 	Options.save_settings()
-	update_textures()
+	_play_music_sample()
+	_update_textures()
+
+func _play_music_sample():
+	%MusicSampleTimer.start(5)
+	%MusicSampleFadePlayer.play(&"RESET")
+	if !%MusicSamplePlayer.playing:
+		%MusicSamplePlayer.play()
+
+func _on_music_sample_timer_timeout() -> void:
+	%MusicSampleFadePlayer.play(&"music_sample_fade")
+
+func _on_music_sample_fade_player_animation_finished(anim_name: StringName) -> void:
+	if anim_name == &"music_sample_fade":
+		%MusicSamplePlayer.stop()
+		%MusicSampleFadePlayer.play(&"RESET")
 
 func _on_sound_volume_value_changed(value: float) -> void:
 	Options.sound_volume = %SoundVolume.value / 100
 	Options.save_settings()
-	update_textures()
+	_play_sound_sample()
+	_update_textures()
 
-func update_textures():
+func _play_sound_sample():
+	SoundPlayer.play_stream(%SoundSample)
+
+func _update_textures():
 	if %SoundVolume.value == 0:
 		%SoundTexture.texture = sound_muted
 	elif %SoundVolume.value < 50:

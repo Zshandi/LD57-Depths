@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://ct5b601bwmo14"]
+[gd_scene load_steps=17 format=3 uid="uid://ct5b601bwmo14"]
 
 [ext_resource type="Texture2D" uid="uid://bvwngs6414l87" path="res://assets/title screen.png" id="1_06t4h"]
 [ext_resource type="Script" uid="uid://dinbmo76s8yb0" path="res://main_menu.gd" id="1_fu7sn"]
@@ -6,7 +6,10 @@
 [ext_resource type="FontFile" uid="uid://bfowvf7yn3i71" path="res://assets/fonts/enter_command/EnterCommand-Bold.ttf" id="4_glbon"]
 [ext_resource type="Script" uid="uid://c8p4pcr2iqfxs" path="res://options_menu.gd" id="5_glbon"]
 [ext_resource type="Texture2D" uid="uid://bb5845iclpsja" path="res://assets/icons/music.png" id="6_nlkkf"]
+[ext_resource type="AudioStream" uid="uid://bovs75tea6q1a" path="res://assets/music/Dive to Survive v2 looped.mp3" id="7_0o4t1"]
 [ext_resource type="Texture2D" uid="uid://bhnw7bxso3dqe" path="res://assets/icons/sound.png" id="7_qe12f"]
+[ext_resource type="AudioStream" uid="uid://x5njpp20yihl" path="res://assets/sounds/hammer hit.wav" id="8_dy7ct"]
+[ext_resource type="Script" uid="uid://ubegebc6co6x" path="res://audio_stream_player_with_settings.gd" id="9_0o4t1"]
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_glbon"]
 thickness = 5
@@ -18,6 +21,43 @@ thickness = 3
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_qe12f"]
 color = Color(1, 1, 1, 1)
 thickness = 3
+
+[sub_resource type="Animation" id="Animation_dy7ct"]
+resource_name = "music_sample_fade"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%MusicSamplePlayer:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0333333, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, -80.0]
+}
+
+[sub_resource type="Animation" id="Animation_0o4t1"]
+resource_name = "RESET"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%MusicSamplePlayer:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0k4wn"]
+_data = {
+&"RESET": SubResource("Animation_0o4t1"),
+&"music_sample_fade": SubResource("Animation_dy7ct")
+}
 
 [node name="TitleScreen" type="CanvasLayer"]
 script = ExtResource("1_fu7sn")
@@ -114,6 +154,24 @@ theme_override_styles/grabber_area_highlight = SubResource("StyleBoxLine_qe12f")
 step = 20.0
 value = 100.0
 
+[node name="MusicSample" type="Node" parent="MainContainer/MenusContainer/OptionsMenu/ButtonContainer/MusicVolumeContainer"]
+
+[node name="MusicSamplePlayer" type="AudioStreamPlayer" parent="MainContainer/MenusContainer/OptionsMenu/ButtonContainer/MusicVolumeContainer/MusicSample"]
+unique_name_in_owner = true
+stream = ExtResource("7_0o4t1")
+bus = &"Music"
+
+[node name="MusicSampleTimer" type="Timer" parent="MainContainer/MenusContainer/OptionsMenu/ButtonContainer/MusicVolumeContainer/MusicSample"]
+unique_name_in_owner = true
+one_shot = true
+
+[node name="MusicSampleFadePlayer" type="AnimationPlayer" parent="MainContainer/MenusContainer/OptionsMenu/ButtonContainer/MusicVolumeContainer/MusicSample"]
+unique_name_in_owner = true
+root_node = NodePath("../..")
+libraries = {
+&"": SubResource("AnimationLibrary_0k4wn")
+}
+
 [node name="SoundVolumeContainer" type="HBoxContainer" parent="MainContainer/MenusContainer/OptionsMenu/ButtonContainer"]
 layout_mode = 2
 size_flags_vertical = 3
@@ -136,6 +194,12 @@ theme_override_styles/grabber_area_highlight = SubResource("StyleBoxLine_qe12f")
 step = 20.0
 value = 100.0
 
+[node name="SoundSample" type="AudioStreamPlayer" parent="MainContainer/MenusContainer/OptionsMenu/ButtonContainer/SoundVolumeContainer"]
+unique_name_in_owner = true
+stream = ExtResource("8_dy7ct")
+script = ExtResource("9_0o4t1")
+metadata/_custom_type_script = "uid://ubegebc6co6x"
+
 [node name="FullScreenButton" type="Button" parent="MainContainer/MenusContainer/OptionsMenu/ButtonContainer"]
 unique_name_in_owner = true
 layout_mode = 2
@@ -155,5 +219,7 @@ layout_mode = 2
 [connection signal="visibility_changed" from="MainContainer/MenusContainer/OptionsMenu" to="MainContainer/MenusContainer/OptionsMenu" method="_on_visibility_changed"]
 [connection signal="pressed" from="MainContainer/MenusContainer/OptionsMenu/ButtonContainer/Back" to="MainContainer/MenusContainer/OptionsMenu" method="_on_back_pressed"]
 [connection signal="value_changed" from="MainContainer/MenusContainer/OptionsMenu/ButtonContainer/MusicVolumeContainer/MusicVolume" to="MainContainer/MenusContainer/OptionsMenu" method="_on_music_volume_value_changed"]
+[connection signal="timeout" from="MainContainer/MenusContainer/OptionsMenu/ButtonContainer/MusicVolumeContainer/MusicSample/MusicSampleTimer" to="MainContainer/MenusContainer/OptionsMenu" method="_on_music_sample_timer_timeout"]
+[connection signal="animation_finished" from="MainContainer/MenusContainer/OptionsMenu/ButtonContainer/MusicVolumeContainer/MusicSample/MusicSampleFadePlayer" to="MainContainer/MenusContainer/OptionsMenu" method="_on_music_sample_fade_player_animation_finished"]
 [connection signal="value_changed" from="MainContainer/MenusContainer/OptionsMenu/ButtonContainer/SoundVolumeContainer/SoundVolume" to="MainContainer/MenusContainer/OptionsMenu" method="_on_sound_volume_value_changed"]
 [connection signal="toggled" from="MainContainer/MenusContainer/OptionsMenu/ButtonContainer/FullScreenButton" to="MainContainer/MenusContainer/OptionsMenu" method="_on_full_screen_button_toggled"]
